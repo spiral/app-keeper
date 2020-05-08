@@ -42,7 +42,14 @@ composer create-project spiral/app-keeper --stability dev
 Once the application is installed you can ensure that it was configured properly by executing:
 
 ```
-$ php app.php configure
+$ php app.php configure -vv
+```
+
+Migrate the database:
+
+```
+$ php app.php migrate:init
+$ php app.php migrate
 ```
 
 Seed user accounts:
