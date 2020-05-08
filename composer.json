@@ -37,13 +37,13 @@
     "cycle/proxy-factory": "^1.0",
     "cycle/annotated": "^2.0",
     "cycle/migrations": "^1.0",
-    "fzaninotto/faker": "^1.9",
     "spiral/data-grid-bridge": "^1.1",
     "spiral/auth-http": "^1.0",
     "spiral/annotated-routes": "^1.0",
     "spiral/toolkit": "^v1.1",
     "spiral/helpers": "^1.0",
-    "spiral/keeper": "^0.5a"
+    "spiral/keeper": "^0.5a",
+    "fzaninotto/faker": "^1.9"
   },
   "require-dev": {
     "phpunit/phpunit": "^8.5"
