@@ -1,0 +1,11 @@
+.idea
+vendor
+runtime
+node_modules
+rr*
+spiral
+spiral.exe
+.env
+.phpunit.result.cache
+app.db
+*.js___jb_tmp___

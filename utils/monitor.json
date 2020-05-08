@@ -1,0 +1,6 @@
+{
+  "packages/keeper/dist": "public/keeper",
+  "packages/toolkit/dist": "public/toolkit",
+  "packages/autocomplete/dist": "public/toolkit/autocomplete",
+  "packages/qrcode/dist": "public/toolkit/qrcode"
+}

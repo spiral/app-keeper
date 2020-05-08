@@ -1,0 +1,11 @@
+*.sh		text eol=lf
+*.js		text eol=lf
+*.ts		text eol=lf
+*.css		text eol=lf
+*.php		text eol=lf
+*.json		text eol=lf
+public/keeper/keeper.js binary
+public/keeper/keeper*.css binary
+public/keeper/keeper*.css.map binary
+public/public/toolkit*.js binary
+public/public/toolkit*.map binary

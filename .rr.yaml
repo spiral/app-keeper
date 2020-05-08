@@ -1,0 +1,20 @@
+http:
+  address: 0.0.0.0:8080
+  workers:
+    command: "php app.php"
+
+static:
+  dir:    "public"
+  forbid: [".php", ".htaccess"]
+
+jobs:
+  pipelines:
+    local.broker: ephemeral
+  dispatch:
+    app-*.pipeline: "local"
+  consume: ["local"]
+  workers:
+    command: "php app.php"
+
+metrics:
+  address: localhost:2112
