@@ -34,7 +34,7 @@ Application bundle includes the following components:
 Installation
 --------
 ```
-composer create-project spiral/app-keeper
+composer create-project spiral/app-keeper --stability dev
 ```
 
 > Application server will be downloaded automatically (`php-curl` and `php-zip` required).
