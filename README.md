@@ -82,7 +82,7 @@ $ spiral.exe serve -v -d
 
 Application will be available on `http://localhost:8080`. Keeper control panel available at `http://localhost:8080/keeper`.
 
-> Read more about application server configuration [here](https://roadrunner.dev/docs).
+> Read more about application server configuration [here](https://roadrunner.dev/docs). Make sure to turn `DEBUG` off in `.env` to enable view caching.
 
 Testing:
 --------
