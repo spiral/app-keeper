@@ -15,7 +15,7 @@ use Spiral\Keeper\Annotation as Keeper;
 use Spiral\Prototype\Traits\PrototypeTrait;
 
 /**
- * @Keeper\Controller(name="dashboard", prefix="")
+ * @Keeper\Controller(name="dashboard", path="")
  */
 class DashboardController
 {
