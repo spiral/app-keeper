@@ -22,7 +22,7 @@ use Spiral\Security\ActorInterface;
 use Spiral\Translator\Traits\TranslatorTrait;
 
 /**
- * @Keeper\Controller(name="profile", path="/")
+ * @Keeper\Controller(name="profile", prefix="/")
  */
 class ProfileController implements SingletonInterface
 {
