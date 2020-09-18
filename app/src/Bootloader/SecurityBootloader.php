@@ -27,11 +27,11 @@ class SecurityBootloader extends Bootloader
     public const ROLES = [
         'user'        => 'User',
         'admin'       => 'Administrator',
-        'super-admin' => 'Super Administrator'
+        'super-admin' => 'Super Administrator',
     ];
 
     protected const DEPENDENCIES = [
-        AuthBootloader::class
+        AuthBootloader::class,
     ];
 
     /**

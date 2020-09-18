@@ -62,8 +62,8 @@ class UserController
             'status'  => 200,
             'message' => 'User information has been created.',
             'action'  => [
-                'redirect' => $routes->uri('users.edit', ['user' => $user->id])
-            ]
+                'redirect' => $routes->uri('users.edit', ['user' => $user->id]),
+            ],
         ];
     }
 
@@ -91,7 +91,7 @@ class UserController
         return [
             'status'  => 200,
             'message' => 'User information has been updated.',
-            'action'  => 'reload'
+            'action'  => 'reload',
         ];
     }
 
@@ -106,7 +106,7 @@ class UserController
 
         return [
             'status'  => 200,
-            'message' => 'User roles has been updated.'
+            'message' => 'User roles has been updated.',
         ];
     }
 
@@ -121,7 +121,7 @@ class UserController
 
         return [
             'status'  => 200,
-            'message' => 'User password has been updated.'
+            'message' => 'User password has been updated.',
         ];
     }
 

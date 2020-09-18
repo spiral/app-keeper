@@ -37,7 +37,7 @@ class AuthController
         if ($user === null || !$this->passwords->compare($request->getPassword(), $user->passwordHash)) {
             return [
                 'status' => 400,
-                'error'  => 'No such user'
+                'error'  => 'No such user',
             ];
         }
 
@@ -51,7 +51,7 @@ class AuthController
         return [
             'status'  => 200,
             'message' => 'Authenticated, redirecting',
-            'action'  => 'reload'
+            'action'  => 'reload',
         ];
     }
 

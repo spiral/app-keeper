@@ -17,6 +17,6 @@ class OnlyNotAdminsRule extends CompositeRule
 {
     protected const RULES = [
         NotSelfOrOtherAdminRule::class,
-        NotSelfRule::class
+        NotSelfRule::class,
     ];
 }

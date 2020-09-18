@@ -41,15 +41,15 @@ class UpdateRequest extends Filter
             ['notEmpty'],
             ['string'],
             ['email'],
-            ['entity:unique', 'user', 'email', 'error' => 'Email address already used.']
+            ['entity:unique', 'user', 'email', 'error' => 'Email address already used.'],
         ],
         'password'        => [
             ['string'],
             [
                 [PasswordHasher::class, 'checkPassword'],
                 'error' => 'Password is too weak.',
-                'if'    => ['withAll' => ['password']]
-            ]
+                'if'    => ['withAll' => ['password']],
+            ],
         ],
         'confirmPassword' => [
             'string',

@@ -46,7 +46,7 @@ class DashboardController
     {
         return [
             'status'  => 200,
-            'message' => 'Done something!'
+            'message' => 'Done something!',
         ];
     }
 }

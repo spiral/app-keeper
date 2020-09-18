@@ -35,6 +35,6 @@ class AdminBootloader extends KeeperBootloader
     ];
 
     protected const MIDDLEWARE = [
-        LoginMiddleware::class
+        LoginMiddleware::class,
     ];
 }
