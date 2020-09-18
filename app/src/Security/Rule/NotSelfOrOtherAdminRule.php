@@ -1,10 +1,10 @@
 <?php
 
 /**
- * Spiral Framework.
+ * This file is part of Spiral package.
  *
- * @license   MIT
- * @author    Anton Titov (Wolfy-J)
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 declare(strict_types=1);
@@ -26,7 +26,8 @@ class NotSelfOrOtherAdminRule implements RuleInterface, SingletonInterface
     public function allows(ActorInterface $actor, string $permission, array $context): bool
     {
         $roles = $context['user']->getRoles();
-        if (in_array('admin', $roles) || in_array('super-admin', $roles)) {
+
+        if (in_array('admin', $roles, true) || in_array('super-admin', $roles, true)) {
             return false;
         }
 
