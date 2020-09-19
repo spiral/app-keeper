@@ -32,7 +32,7 @@ class UpdateRequest extends Filter
             ['notEmpty'],
             ['string'],
             ['email'],
-            ['entity:unique', 'user', 'email', 'error' => '[[Email address already used.]]']
+            ['entity:unique', 'user', 'email', 'error' => '[[Email address already used.]]'],
         ],
         'firstName' => ['notEmpty', 'string'],
         'lastName'  => ['notEmpty', 'string'],

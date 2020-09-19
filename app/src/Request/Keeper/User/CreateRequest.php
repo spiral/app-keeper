@@ -32,7 +32,7 @@ class CreateRequest extends Filter
         'email'           => 'data:email',
         'password'        => 'data:password',
         'confirmPassword' => 'data:confirmPassword',
-        'roles'           => 'data:roles'
+        'roles'           => 'data:roles',
     ];
 
     protected const VALIDATES = [
@@ -42,12 +42,12 @@ class CreateRequest extends Filter
             ['notEmpty'],
             ['string'],
             ['email'],
-            ['entity:unique', 'user', 'email', 'error' => '[[Email address already used.]]']
+            ['entity:unique', 'user', 'email', 'error' => '[[Email address already used.]]'],
         ],
         'password'        => [
             'notEmpty',
             'string',
-            [[PasswordHasher::class, 'checkPassword'], 'error' => 'Password is too weak.']
+            [[PasswordHasher::class, 'checkPassword'], 'error' => 'Password is too weak.'],
         ],
         'confirmPassword' => [
             'notEmpty',
@@ -57,8 +57,8 @@ class CreateRequest extends Filter
         'roles'           => [
             ['notEmpty', 'error' => 'At least one role is required.'],
             ['array'],
-            [[RolesRequest::class, 'validRoles'], 'error' => 'Invalid roles.']
-        ]
+            [[RolesRequest::class, 'validRoles'], 'error' => 'Invalid roles.'],
+        ],
     ];
 
     /**

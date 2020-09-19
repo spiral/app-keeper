@@ -55,7 +55,7 @@ class ProfileController implements SingletonInterface
         if (!$this->passwords->compare($request->currentPassword, $user->passwordHash)) {
             return [
                 'status' => 200,
-                'error'  => $this->say('Account password does not match')
+                'error'  => $this->say('Account password does not match'),
             ];
         }
 
@@ -63,7 +63,7 @@ class ProfileController implements SingletonInterface
 
         return [
             'status'  => 200,
-            'message' => $this->say('Profile updated successfully')
+            'message' => $this->say('Profile updated successfully'),
         ];
     }
 }

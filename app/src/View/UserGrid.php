@@ -44,14 +44,6 @@ class UserGrid extends GridSchema
     }
 
     /**
-     * @return array
-     */
-    public function getDefaults(): array
-    {
-        return ['sort' => ['created' => 'desc']];
-    }
-
-    /**
      * @param User $user
      * @return array
      */
@@ -63,7 +55,15 @@ class UserGrid extends GridSchema
             'firstName' => $user->firstName,
             'lastName'  => $user->lastName,
             'email'     => $user->email,
-            'roles'     => $user->getRoles()
+            'roles'     => $user->getRoles(),
         ];
+    }
+
+    /**
+     * @return array
+     */
+    public function getDefaults(): array
+    {
+        return ['sort' => ['created' => 'desc']];
     }
 }

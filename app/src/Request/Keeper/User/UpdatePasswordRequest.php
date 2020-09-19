@@ -23,20 +23,20 @@ class UpdatePasswordRequest extends Filter
 {
     protected const SCHEMA = [
         'password'        => 'data:password',
-        'confirmPassword' => 'data:confirmPassword'
+        'confirmPassword' => 'data:confirmPassword',
     ];
 
     protected const VALIDATES = [
         'password'        => [
             'notEmpty',
             'string',
-            [[PasswordHasher::class, 'checkPassword'], 'error' => 'Password is too weak.']
+            [[PasswordHasher::class, 'checkPassword'], 'error' => 'Password is too weak.'],
         ],
         'confirmPassword' => [
             'notEmpty',
             'string',
             ['match', 'password', 'error' => 'Passwords do not match.'],
-        ]
+        ],
     ];
 
     /**

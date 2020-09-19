@@ -21,15 +21,15 @@ use Spiral\Filters\Filter;
 class RolesRequest extends Filter
 {
     protected const SCHEMA = [
-        'roles' => 'data:roles'
+        'roles' => 'data:roles',
     ];
 
     protected const VALIDATES = [
         'roles' => [
             ['notEmpty', 'error' => 'At least one role is required.'],
             ['array'],
-            [[self::class, 'validRoles'], 'error' => 'Invalid roles.']
-        ]
+            [[self::class, 'validRoles'], 'error' => 'Invalid roles.'],
+        ],
     ];
 
     /**

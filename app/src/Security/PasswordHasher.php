@@ -48,15 +48,15 @@ class PasswordHasher implements SingletonInterface
         $errors = [];
 
         if (strlen($password) < 8) {
-            $errors[] = "Password too short!";
+            $errors[] = 'Password too short!';
         }
 
-        if (!preg_match("#[0-9]+#", $password)) {
-            $errors[] = "Password must include at least one number!";
+        if (!preg_match('#[0-9]+#', $password)) {
+            $errors[] = 'Password must include at least one number!';
         }
 
-        if (!preg_match("#[a-zA-Z]+#", $password)) {
-            $errors[] = "Password must include at least one letter!";
+        if (!preg_match('#[a-zA-Z]+#', $password)) {
+            $errors[] = 'Password must include at least one letter!';
         }
 
         return $errors === [];

@@ -15,29 +15,28 @@ use Spiral\Filters\Filter;
 
 class LoginRequest extends Filter
 {
-    private const DEFAULT_DURATION  = 'PT24H';
-    private const REMEMBER_DURATION = 'PT30D';
-
     protected const SCHEMA = [
         'username' => 'data:username',
         'password' => 'data:password',
         'code'     => 'data:code',
-        'remember' => 'data:remember'
+        'remember' => 'data:remember',
     ];
 
     protected const VALIDATES = [
         'username' => ['notEmpty', 'string'],
         'password' => ['notEmpty', 'string'],
         'remember' => ['boolean'],
-        'code'     => ['string']
+        'code'     => ['string'],
     ];
 
     protected const SETTERS = [
         'username' => 'strval',
         'password' => 'strval',
         'code'     => 'strval',
-        'remember' => 'boolval'
+        'remember' => 'boolval',
     ];
+    private const DEFAULT_DURATION  = 'PT24H';
+    private const REMEMBER_DURATION = 'PT30D';
 
     /**
      * @return string
