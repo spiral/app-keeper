@@ -1,0 +1,34 @@
+@use "project-vars";
+@use "fonts";
+
+@use "~@spiral/toolkit/packages/keeper/src/vars" with (
+  $primary: project-vars.$am-primary-light,
+  $warning: project-vars.$clr-orange-light,
+  $sf-primary: project-vars.$am-primary-light,
+  $sf-sidebar: project-vars.$am-primary,
+  $sf-font-family-sans-serif: project-vars.$am-font-family-sans-serif,
+);
+
+@import "~@spiral/toolkit/packages/keeper/src/keeper";
+@import "~@spiral/toolkit/packages/keeper/src/components";
+
+.sf-sidebar__logo svg {
+    width: 200px;
+    fill: white;
+}
+
+.sf-user-short-info__name {
+    color: #265c50;
+
+    &:hover {
+        color: #1b4138;
+    }
+}
+
+.modal-header {
+    border-bottom: none;
+}
+
+.modal-footer {
+    border-top: none;
+}

@@ -7,8 +7,7 @@
 </stack:push>
 
 <block:styles>
-  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="/keeper/keeper.css"/>
+  <link rel="stylesheet" href="/generated/css/keeper.css"/>
 </block:styles>
 
 <define:body>
