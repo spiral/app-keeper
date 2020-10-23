@@ -1,0 +1,11 @@
+version: "3.8"
+
+services:
+  php:
+    container_name: keeper
+    build:
+      dockerfile: docker/php/Dockerfile
+      context: ./
+    restart: always
+    ports:
+      - 8080:8080
