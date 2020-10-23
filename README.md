@@ -107,6 +107,17 @@ $ ./vendor/bin/spiral get
 
 > Make sure to create super-admin account.
 
+Docker:
+--------
+
+To launch Keeper in docker launch
+
+```
+./dockerInit.sh
+```
+
+It will build a local container, configure encryption key and set up Sqlite database 
+
 License:
 --------
 MIT License (MIT). Please see [`LICENSE`](./LICENSE) for more information. Maintained by [Spiral Scout](https://spiralscout.com).
