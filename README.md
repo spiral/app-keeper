@@ -110,13 +110,30 @@ $ ./vendor/bin/spiral get
 Docker:
 --------
 
-To launch Keeper in docker launch
+To launch Keeper in docker create env file if needed
+
+```bash
+    copy .env.sample .env
+```
+
+Build and run for Linux
 
 ```
 ./dockerInit.sh
 ```
 
+Build and run for Windows
+
+```
+./dockerInit.bat
+```
+
 It will build a local container, configure encryption key and set up Sqlite database 
+
+Custom Frontend
+-----------
+
+
 
 License:
 --------

@@ -9,7 +9,7 @@
         "prebuild": "rimraf ./public/generated",
         "prewatch": "rimraf ./public/generated",
         "prebuilddev": "rimraf ./public/generated",
-        "builddev": "cross-env NODE_ENV=development webpack --config webpack/index.js",
+        "watch": "cross-env NODE_ENV=development webpack --config webpack/index.js -w",
         "build": "cross-env NODE_ENV=production webpack --config webpack/index.js",
         "start:prod": "yarn build && cross-env NODE_ENV=production node server",
         "start": "cross-env NODE_ENV=development node server",

@@ -1,6 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 const webpack = require('webpack');
 const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const Dotenv = require('dotenv-webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const constants = require('./constants');
@@ -16,12 +17,11 @@ const definePluginConfig = {
   },
 };
 
-
 const host = process.env.HOST || 'localhost';
 const port = parseInt(process.env.PORT, 10) || 3030;
 
 const cssExtractorOptions = {
-    filename: 'css/[name].css',
+  filename: 'css/[name].css',
 };
 
 const config = {
@@ -37,6 +37,9 @@ const config = {
     ],
     keeper: [
       './front/keeper',
+    ],
+    ie11: [
+      './front/ie11',
     ],
   },
 

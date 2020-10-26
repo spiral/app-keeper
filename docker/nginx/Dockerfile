@@ -3,7 +3,6 @@ FROM node:15-alpine3.10 as build
 
 RUN apk update \
     && apk add --no-cache  \
-        chromium \
         nss \
         freetype \
         freetype-dev \
@@ -19,14 +18,15 @@ RUN apk update \
         wget \
     && rm -rf /var/lib/apt/lists/*
 
-# Tell Puppeteer to skip installing Chrome. We'll be using the installed package.
-ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
-ENV PUPPETEER_EXECUTABLE_PATH /usr/bin/chromium-browser
-
 WORKDIR /var/www
-COPY . /var/www
+
+COPY ./package.json /var/www
+COPY ./yarn.lock /var/www
 
 RUN yarn install --silent
+
+COPY . /var/www
+
 RUN yarn build
 
 # Prepare webserver

@@ -2,7 +2,22 @@
 <use:element path="embed/links" as="homepage:links"/>
 
 <stack:push name="styles">
-    <link rel="stylesheet" href="/styles/welcome.css"/>
+    @if(!env('FRONT_END_PUBLIC_URL'))
+        <link rel="stylesheet" href="/generated/css/client.css"/>
+    @endif
+    @if(env('FRONT_END_PUBLIC_URL'))
+        <link rel="stylesheet" href="{{ env('FRONT_END_PUBLIC_URL') }}/generated/css/client.css"/>
+    @endif
+</stack:push>
+
+<stack:push name="scripts">
+    <script type="text/javascript" src="/generated/ie11.js"></script>
+    @if(env('FRONT_END_PUBLIC_URL'))
+        <script type="text/javascript" src="{{ env('FRONT_END_PUBLIC_URL') }}/generated/client.js"></script>
+    @endif
+    @if(!env('FRONT_END_PUBLIC_URL'))
+        <script type="text/javascript" src="/generated/client.js"></script>
+    @endif
 </stack:push>
 
 <define:body>
