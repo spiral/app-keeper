@@ -53,11 +53,14 @@ RUN EXPECTED_COMPOSER_SIGNATURE=$(wget -q -O - https://composer.github.io/instal
 
 
 WORKDIR /var/www
-COPY ./ /var/www
 
-RUN composer install --no-autoloader --no-suggest && \
+COPY ./composer.json /var/www
+
+RUN composer install --no-autoloader --no-suggest --no-scripts && \
         composer clear-cache && \
-        composer dump --optimize
+        composer dump --optimize --no-scripts
+
+COPY ./ /var/www
 
 RUN composer run-script post-create-project-cmd
 RUN mkdir /var/server
