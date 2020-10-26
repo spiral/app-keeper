@@ -157,6 +157,15 @@ For local development you would like file changes to appear in a container, and 
 docker-compose -f docker-compose.yml -f docker-compose-local.yml up -d
 ```
 
+Make sure you have vendor directory copied on host machine in this case, otherwise you'll mount code without vendor and autoload into a container and it will not work.
+You can do it like this:
+
+```
+docker-compose up -d
+docker cp keeper:/var/www/vendor .
+docker-compose -f docker-compose.yml -f docker-compose-local.yml up -d
+```
+
 Custom Frontend Build
 -----------
 
@@ -195,7 +204,14 @@ If you are seeing 404 on your scripts, ensure they are included like so
     @endif
 ```   
 
+Local development for both frontend and backend
+-----------
 
+To enable all file sync you'll need all docker-compose files at once:
+
+```
+docker-compose -f docker-compose.yml -f docker-compose-local.yml -f docker-compose-custom-front.yml -f docker-compose-custom-front-local.yml up  -d
+```
 
 License:
 --------
