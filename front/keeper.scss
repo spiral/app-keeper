@@ -2,10 +2,10 @@
 @use "fonts";
 
 @use "~@spiral-toolkit/keeper/src/vars" with (
-  $primary: project-vars.$am-primary-light,
-  $warning: project-vars.$clr-orange-light,
-  $sf-primary: project-vars.$am-primary-light,
-  $sf-sidebar: project-vars.$am-primary,
+  $primary: project-vars.$am-primary,
+  // $warning: project-vars.$clr-orange-light,
+  $sf-primary: project-vars.$am-primary,
+  $sf-sidebar: project-vars.$am-primary-dark,
   $sf-font-family-sans-serif: project-vars.$am-font-family-sans-serif,
 );
 
@@ -18,10 +18,10 @@
 }
 
 .sf-user-short-info__name {
-    color: #265c50;
+    color: project-vars.$am-primary;
 
     &:hover {
-        color: #1b4138;
+        color: project-vars.$am-primary-dark;
     }
 }
 

@@ -9,7 +9,7 @@ function createWebpackMiddleware(compiler, publicPath) {
     publicPath,
     silent: true,
     stats: 'errors-only',
-    allowedHosts: ['localhost:8081', 'localhost:3030'],
+    allowedHosts: ['localhost:8080', 'localhost:3030'],
     headers: { 'Access-Control-Allow-Origin': '*' },
   });
 }

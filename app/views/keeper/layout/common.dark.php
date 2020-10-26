@@ -6,14 +6,29 @@
   <sitemap:init/>
 </stack:push>
 
-<block:styles>
-  <link rel="stylesheet" href="/generated/css/keeper.css"/>
-</block:styles>
+<stack:push name="styles">
+    @if(!env('FRONT_END_PUBLIC_URL'))
+        <link rel="stylesheet" href="/generated/css/keeper.css"/>
+    @endif
+    @if(env('FRONT_END_PUBLIC_URL'))
+        <link rel="stylesheet" href="{{ env('FRONT_END_PUBLIC_URL') }}/generated/css/keeper.css"/>
+    @endif
+</stack:push>
+
+<stack:push name="scripts">
+    <script type="text/javascript" src="/generated/ie11.js"></script>
+    @if(env('FRONT_END_PUBLIC_URL'))
+        <script type="text/javascript" src="{{ env('FRONT_END_PUBLIC_URL') }}/generated/keeper.js"></script>
+    @endif
+    @if(!env('FRONT_END_PUBLIC_URL'))
+        <script type="text/javascript" src="/generated/keeper.js"></script>
+    @endif
+</stack:push>
 
 <define:body>
   <keeper:sidebar activeRoute="${activeRoute}">
     <block:header>
-      <div class="sf-sidebar__logo" style="background-color: #364048">
+      <div class="sf-sidebar__logo">
         <img src="/logo.svg"/>
         <span>Spiral Framework</span>
       </div>

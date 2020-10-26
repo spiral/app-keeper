@@ -7,6 +7,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const constants = require('./constants');
 const loaders = require('./loaders');
 
+const isHotReload = (constants.WATCH_MODE === 'server');
+
 const definePluginConfig = {
   'process.env': {
     NODE_ENV: JSON.stringify('development'),
@@ -31,13 +33,14 @@ const config = {
   devtool: 'eval-source-maps',
 
   entry: {
-    client: [
+    client: isHotReload ? [
       `webpack-hot-middleware/client?reload=true&path=http://${host}:${port}/__webpack_hmr`,
       './front/client',
-    ],
-    keeper: [
+    ] : './front/client',
+    keeper: isHotReload ? [
+      `webpack-hot-middleware/client?reload=true&path=http://${host}:${port}/__webpack_hmr`,
       './front/keeper',
-    ],
+    ] : './front/keeper',
     ie11: [
       './front/ie11',
     ],
@@ -50,7 +53,7 @@ const config = {
 
   output: {
     path: path.resolve('./public/generated/'),
-    publicPath: `http://${host}:${port}/`,
+    publicPath: `http://${host}:${port}/generated`,
     filename: '[name].js',
     chunkFilename: '[name].chunk.js',
     pathinfo: true,
@@ -65,11 +68,11 @@ const config = {
   plugins: [
     new Dotenv(),
     new webpack.DefinePlugin(definePluginConfig),
-    new MiniCssExtractPlugin(cssExtractorOptions),
-    new webpack.HotModuleReplacementPlugin(),
-    new HtmlWebpackPlugin({
+    // Hot reload will load stuff with style-loader, watch mode will just update files
+    (isHotReload ? new webpack.HotModuleReplacementPlugin() : new MiniCssExtractPlugin(cssExtractorOptions)),
+    /* new HtmlWebpackPlugin({
       template: 'front/index.html',
-    }),
+    }), */
   ],
   module: {
     rules: loaders,

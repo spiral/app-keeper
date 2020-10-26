@@ -9,10 +9,10 @@
         "prebuild": "rimraf ./public/generated",
         "prewatch": "rimraf ./public/generated",
         "prebuilddev": "rimraf ./public/generated",
-        "watch": "cross-env NODE_ENV=development webpack --config webpack/index.js -w",
+        "watch": "cross-env NODE_ENV=development WATCH_MODE=watch webpack --config webpack/index.js -w",
         "build": "cross-env NODE_ENV=production webpack --config webpack/index.js",
         "start:prod": "yarn build && cross-env NODE_ENV=production node server",
-        "start": "cross-env NODE_ENV=development node server",
+        "start": "cross-env WATCH_MODE=server NODE_ENV=development node server",
         "lint": "eslint \"front/**/**.ts*\"",
         "lint:fix": "eslint --fix \"front/**/**.ts*\""
     },

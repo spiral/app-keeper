@@ -130,8 +130,33 @@ Build and run for Windows
 
 It will build a local container, configure encryption key and set up Sqlite database 
 
-Custom Frontend
+Custom Frontend Build
 -----------
+
+If developing with docker container, ensure to include custom-front part in build like so `docker-compose -f docker-compose.yml -f docker-compose-custom-front.yml up -d`
+
+Local development is supported in 2 modes:
+
+**1. Watch mode.** 
+
+Launch `yarn watch` to watch `./front` directory for changes and recompile them on go. Refresh page to see changes.
+
+**2. Hot reload mode.**
+ 
+Set up env variable `FRONT_END_PUBLIC_URL` to point at local server URL, this package is configured to use `http://localhost:3030` Change scripts in `webpack` and `server` folders to change that.
+
+After that launch `yarn start`. This will start dev server at `http://localhost:3030`
+
+If you are seeing 404 on your scripts, ensure they are included like so
+
+```php
+    @if(env('FRONT_END_PUBLIC_URL'))
+        <script type="text/javascript" src="{{ env('FRONT_END_PUBLIC_URL') }}/generated/keeper.js"></script>
+    @endif
+    @if(!env('FRONT_END_PUBLIC_URL'))
+        <script type="text/javascript" src="/generated/keeper.js"></script>
+    @endif
+```   
 
 
 
