@@ -170,7 +170,9 @@ For local development add one more docker compose file to sync local files into 
 docker-compose -f docker-compose.yml -f docker-compose-custom-front.yml -f docker-compose-custom-front-local.yml up  -d
 ```
 
-Local development is supported in 2 modes:
+In this case you will need to run `yarn build` locally to create frontend build, otherwise empty directory public/generated will be mounted in nginx container
+
+Frontend local development is supported in 2 modes:
 
 **1. Watch mode.** 
 
