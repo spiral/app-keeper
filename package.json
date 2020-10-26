@@ -1,8 +1,7 @@
 {
-    "name": "axia",
+    "name": "app-keeper",
     "version": "1.0.5",
     "main": "index.js",
-    "repository": "git@git.spiralscout.com:internal-projects/mcu-draft.git",
     "author": "SpiralScout",
     "license": "MIT",
     "private": true,
@@ -22,7 +21,7 @@
         "@babel/preset-env": "^7.10.2",
         "@fortawesome/fontawesome-free": "^5.11.2",
         "@sentry/browser": "^5.20.1",
-        "@spiral/toolkit": "git+ssh://git@github.com:spiral/toolkit.git#v1.1.55",
+        "@spiral-toolkit/toolkit": "^1.1.56",
         "core-js": "^3.6.5",
         "flatpickr": "^4.6.3",
         "bootstrap": "^4.3.1",

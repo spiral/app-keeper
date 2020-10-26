@@ -1,0 +1,12 @@
+version: "3.8"
+
+services:
+  nginx:
+    ports:
+      - 8090:80
+    depends_on:
+      - php
+    build:
+      context: ./
+      dockerfile: ./docker/nginx/Dockerfile
+    command: "./wait-for-it.sh php:8080 -- nginx -g 'daemon off;'"
