@@ -39,6 +39,7 @@ Installation
 --------
 ```
 composer create-project spiral/app-keeper --stability dev
+yarn build
 ```
 
 > Application server will be downloaded automatically (`php-curl` and `php-zip` required).
@@ -98,11 +99,13 @@ Make sure to properly configure project if you cloned the existing repository.
 
 ```bash
 $ copy .env.sample .env
+$ composer install
 $ php app.php encrypt:key -m .env
 $ php app.php configure -vv
 $ php app.php migrate:init
 $ php app.php migrate
 $ ./vendor/bin/spiral get
+$ yarn build
 ```
 
 > Make sure to create super-admin account.
@@ -138,7 +141,8 @@ Docker scenarios
 
 In this repository you can find several docker-compose files, you can use them in combination to handle different scenarios.
 
-To launch Spiral application with Roadrunner in one container. No file sync, no worker reload:  will work with the code version you have on the moment of container build on http://localhost:8080
+You can launch Spiral application with Roadrunner in one container and frontend build with Nginx in another (it will serve static files and proxy dynamic requests to application container).
+No file sync, no worker reload:  will work with the code version you have on the moment of container build on http://localhost:8080
 
 ```
 docker-compose -f docker-compose.yml up -d
@@ -169,14 +173,10 @@ docker-compose -f docker-compose.yml -f docker-compose-local.yml up -d
 Custom Frontend Build
 -----------
 
-If developing with docker container, ensure to include custom-front part in build like so `docker-compose -f docker-compose.yml -f docker-compose-custom-front.yml up -d`
-
-It will launch Spiral app in separate PHP container served by Roadrunner, Nginx container with frontend build (it will serve static files and proxy dynamic requests to application container) on http://localhost:8090
-
 For local development add one more docker compose file to sync local files into Nginx container:
 
 ```
-docker-compose -f docker-compose.yml -f docker-compose-custom-front.yml -f docker-compose-custom-front-local.yml up  -d
+docker-compose -f docker-compose.yml -f docker-compose-custom-front-local.yml up  -d
 ```
 
 In this case you will need to run `yarn build` locally to create frontend build, otherwise empty directory public/generated will be mounted in nginx container
@@ -210,7 +210,7 @@ Local development for both frontend and backend
 To enable all file sync you'll need all docker-compose files at once:
 
 ```
-docker-compose -f docker-compose.yml -f docker-compose-local.yml -f docker-compose-custom-front.yml -f docker-compose-custom-front-local.yml up  -d
+docker-compose -f docker-compose.yml -f docker-compose-local.yml -f docker-compose-custom-front-local.yml up  -d
 ```
 
 License:
