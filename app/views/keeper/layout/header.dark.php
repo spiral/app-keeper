@@ -1,3 +1,5 @@
+<use:bundle path="keeper:bundle"/>
+
 <header class="sf-header">
   <button class="sf-sidebar__toggle" data-sf="sidebar-toggle" aria-expanded="true" aria-controls="sidebar">
     <i class="fa fa-bars"></i>
@@ -22,4 +24,14 @@
       <a class="dropdown-item" href="@route('auth:logout', ['token' => $_auth_->getToken()->getID()])">Log Out</a>
     </div>
   </div>
+  <notifications:toggle>
+    <script role="sf-options" type="application/json">
+        {
+            "api": {
+                "getList": "/keeper/testlist",
+                "setAsRead": "/keeper/markasread"
+            }
+        }
+    </script>
+  </notifications:toggle>
 </header>

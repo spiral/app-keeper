@@ -12,6 +12,7 @@
 
 <block:scripts>
     <script type="text/javascript" src="/generated/ie11.js"></script>
+    <script type="text/javascript" src="/toolkit/toolkit.js"></script>
     @if(env('FRONT_END_PUBLIC_URL'))
         <script type="text/javascript" src="{{ env('FRONT_END_PUBLIC_URL') }}/generated/keeper.js"></script>
     @endif

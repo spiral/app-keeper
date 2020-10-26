@@ -53,4 +53,6 @@
 
     <block:main/>
   </main>
+
+    <notifications:drawer></notifications:drawer>
 </define:body>
