@@ -1,3 +1,4 @@
+IF NOT EXIST .env copy .env.sample .env
 docker-compose up -d --build
 docker cp keeper:/var/www/.env .
 docker cp keeper:/var/www/vendor .
