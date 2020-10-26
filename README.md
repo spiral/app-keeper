@@ -110,15 +110,17 @@ $ ./vendor/bin/spiral get
 Docker:
 --------
 
-To launch Keeper in docker create env file if needed
+Requirements:  Docker engine 19.03.0+
+
+To launch Keeper in Docker create env file if needed.
 
 ```bash
     copy .env.sample .env
 ```
 
-Build and run for Linux
+Build and run for Linux and MacOS
 
-```
+```bash
 ./dockerInit.sh
 ```
 
@@ -128,12 +130,45 @@ Build and run for Windows
 ./dockerInit.bat
 ```
 
-It will build a local container, configure encryption key and set up Sqlite database 
+It will build a local container, configure encryption key and set up Sqlite database.
+
+
+Docker scenarios
+-----------
+
+In this repository you can find several docker-compose files, you can use them in combination to handle different scenarios.
+
+To launch Spiral application with Roadrunner in one container. No file sync, no worker reload:  will work with the code version you have on the moment of container build on http://localhost:8080
+
+```
+docker-compose -f docker-compose.yml up -d
+```
+Or just
+```
+docker-compose up -d
+``` 
+
+Docker local development
+-----------
+
+For local development you would like file changes to appear in a container, and make Roadrunner workers to re-launch with updated code.
+
+```
+docker-compose -f docker-compose.yml -f docker-compose-local.yml up -d
+```
 
 Custom Frontend Build
 -----------
 
 If developing with docker container, ensure to include custom-front part in build like so `docker-compose -f docker-compose.yml -f docker-compose-custom-front.yml up -d`
+
+It will launch Spiral app in separate PHP container served by Roadrunner, Nginx container with frontend build (it will serve static files and proxy dynamic requests to application container) on http://localhost:8090
+
+For local development add one more docker compose file to sync local files into Nginx container:
+
+```
+docker-compose -f docker-compose.yml -f docker-compose-custom-front.yml -f docker-compose-custom-front-local.yml up  -d
+```
 
 Local development is supported in 2 modes:
 
