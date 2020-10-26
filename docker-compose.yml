@@ -9,6 +9,7 @@ services:
     restart: always
 
   nginx:
+    container_name: keeper-nginx
     ports:
       - 8080:80
     depends_on:

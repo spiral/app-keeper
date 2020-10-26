@@ -39,6 +39,7 @@ Installation
 --------
 ```
 composer create-project spiral/app-keeper --stability dev
+cd app-keeper
 yarn build
 ```
 
