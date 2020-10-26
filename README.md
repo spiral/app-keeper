@@ -39,6 +39,8 @@ Installation
 --------
 ```
 composer create-project spiral/app-keeper --stability dev
+cd app-keeper
+yarn build
 ```
 
 > Application server will be downloaded automatically (`php-curl` and `php-zip` required).
@@ -98,11 +100,13 @@ Make sure to properly configure project if you cloned the existing repository.
 
 ```bash
 $ copy .env.sample .env
+$ composer install
 $ php app.php encrypt:key -m .env
 $ php app.php configure -vv
 $ php app.php migrate:init
 $ php app.php migrate
 $ ./vendor/bin/spiral get
+$ yarn build
 ```
 
 > Make sure to create super-admin account.
@@ -110,15 +114,17 @@ $ ./vendor/bin/spiral get
 Docker:
 --------
 
-To launch Keeper in docker create env file if needed
+Requirements:  Docker engine 19.03.0+
+
+To launch Keeper in Docker create env file if needed.
 
 ```bash
     copy .env.sample .env
 ```
 
-Build and run for Linux
+Build and run for Linux and MacOS
 
-```
+```bash
 ./dockerInit.sh
 ```
 
@@ -128,14 +134,55 @@ Build and run for Windows
 ./dockerInit.bat
 ```
 
-It will build a local container, configure encryption key and set up Sqlite database 
+It will build a local container, configure encryption key and set up Sqlite database.
+
+
+Docker scenarios
+-----------
+
+In this repository you can find several docker-compose files, you can use them in combination to handle different scenarios.
+
+You can launch Spiral application with Roadrunner in one container and frontend build with Nginx in another (it will serve static files and proxy dynamic requests to application container).
+No file sync, no worker reload:  will work with the code version you have on the moment of container build on http://localhost:8080
+
+```
+docker-compose -f docker-compose.yml up -d
+```
+Or just
+```
+docker-compose up -d
+``` 
+
+Docker local development
+-----------
+
+For local development you would like file changes to appear in a container, and make Roadrunner workers to re-launch with updated code.
+
+```
+docker-compose -f docker-compose.yml -f docker-compose-local.yml up -d
+```
+
+Make sure you have vendor directory copied on host machine in this case, otherwise you'll mount code without vendor and autoload into a container and it will not work.
+You can do it like this:
+
+```
+docker-compose up -d
+docker cp keeper:/var/www/vendor .
+docker-compose -f docker-compose.yml -f docker-compose-local.yml up -d
+```
 
 Custom Frontend Build
 -----------
 
-If developing with docker container, ensure to include custom-front part in build like so `docker-compose -f docker-compose.yml -f docker-compose-custom-front.yml up -d`
+For local development add one more docker compose file to sync local files into Nginx container:
 
-Local development is supported in 2 modes:
+```
+docker-compose -f docker-compose.yml -f docker-compose-custom-front-local.yml up  -d
+```
+
+In this case you will need to run `yarn build` locally to create frontend build, otherwise empty directory public/generated will be mounted in nginx container
+
+Frontend local development is supported in 2 modes:
 
 **1. Watch mode.** 
 
@@ -158,7 +205,14 @@ If you are seeing 404 on your scripts, ensure they are included like so
     @endif
 ```   
 
+Local development for both frontend and backend
+-----------
 
+To enable all file sync you'll need all docker-compose files at once:
+
+```
+docker-compose -f docker-compose.yml -f docker-compose-local.yml -f docker-compose-custom-front-local.yml up  -d
+```
 
 License:
 --------
