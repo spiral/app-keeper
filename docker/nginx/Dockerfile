@@ -20,9 +20,13 @@ RUN apk update \
 
 WORKDIR /var/www
 
-COPY . /var/www
+COPY ./package.json /var/www
+COPY ./yarn.lock /var/www
 
 RUN yarn install --silent
+
+COPY . /var/www
+
 RUN yarn build
 
 # Prepare webserver
