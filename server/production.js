@@ -4,7 +4,7 @@ const compression = require('compression');
 
 module.exports = function middleware(app, options) {
   const publicPath = options.publicPath || '/';
-  const outputPath = options.outputPath || path.resolve(process.cwd(), '../public/axia');
+  const outputPath = options.outputPath || path.resolve(process.cwd(), '../public/generated');
 
   app.use(compression());
   app.use(publicPath, express.static(outputPath));
