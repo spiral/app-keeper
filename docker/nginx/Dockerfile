@@ -3,7 +3,6 @@ FROM node:15-alpine3.10 as build
 
 RUN apk update \
     && apk add --no-cache  \
-        chromium \
         nss \
         freetype \
         freetype-dev \
