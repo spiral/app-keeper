@@ -9,4 +9,6 @@ services:
     build:
       context: ./
       dockerfile: ./docker/nginx/Dockerfile
+    volumes:
+      - ./docker/nginx/app.conf:/etc/nginx/conf.d/default.conf:ro
     command: "./wait-for-it.sh php:8080 -- nginx -g 'daemon off;'"

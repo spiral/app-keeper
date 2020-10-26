@@ -1,5 +1,5 @@
 # Build frontend
-FROM node:13.13-alpine as build
+FROM node:15-alpine3.10 as build
 
 RUN apk update \
     && apk add --no-cache  \
@@ -35,5 +35,5 @@ FROM nginx:1.19-alpine
 RUN apk update && apk add --no-cache bash && rm -rf /var/lib/apt/lists/*
 
 COPY --from=build /var/www/public /usr/share/nginx/html
-COPY ./docker/wait-for-it.sh .
+COPY ./wait-for-it.sh .
 RUN chmod +x wait-for-it.sh
