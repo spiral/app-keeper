@@ -48,6 +48,9 @@ const config = {
     keeper: [
       './front/keeper',
     ],
+    writeaway: [
+      './front/writeaway',
+    ],
   },
 
   resolve: {

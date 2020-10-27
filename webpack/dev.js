@@ -44,6 +44,9 @@ const config = {
     ie11: [
       './front/ie11',
     ],
+    writeaway: [
+      './front/writeaway',
+    ],
   },
 
   resolve: {
