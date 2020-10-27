@@ -13,15 +13,21 @@ body {
     font-family: project-vars.$am-font-family-sans-serif;
     font-weight: lighter;
     font-size: 16px;
+    background: #ebf1ff;
+}
+
+.center {
+    background: white;
+    position: relative;
+    top: 50%;
+    transform: translate(0, -50%);
+    -webkit-transform: translate(0, -50%);
+    text-align: center;
 }
 
 .wrapper {
-    position: relative;
-    top: 10%;
-    transform: translate(50%, -40%);
-    -webkit-transform: translate(50%, 40%);
-    text-align: center;
     width: 50%;
+    margin: 0 auto;
 }
 
 a {
