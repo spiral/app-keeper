@@ -59,7 +59,7 @@ const config = {
   },
 
   output: {
-    path: path.resolve('./public/generated/'),
+    path: path.resolve('./public/generated'),
     publicPath: '/generated/',
     filename: '[name].js',
     chunkFilename: '[name].chunk.js',

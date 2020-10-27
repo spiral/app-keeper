@@ -55,8 +55,8 @@ const config = {
   },
 
   output: {
-    path: path.resolve('./public/generated/'),
-    publicPath: `http://${host}:${port}/generated`,
+    path: path.resolve('./public/generated'),
+    publicPath: isHotReload ? `http://${host}:${port}/generated/` : '/generated/',
     filename: '[name].js',
     chunkFilename: '[name].chunk.js',
     pathinfo: true,

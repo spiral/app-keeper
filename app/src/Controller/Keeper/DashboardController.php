@@ -45,7 +45,7 @@ class DashboardController
      */
     public function showcaseForms()
     {
-        return $this->views->render('keeper:showcase');
+        return $this->views->render('keeper/showcase/forms');
     }
 
     /**
@@ -54,7 +54,7 @@ class DashboardController
      */
     public function showcaseQrCodes()
     {
-        return $this->views->render('keeper:showcase');
+        return $this->views->render('keeper/showcase/qrcode');
     }
 
     /**
@@ -63,7 +63,7 @@ class DashboardController
      */
     public function showcaseDataGrids()
     {
-        return $this->views->render('keeper:showcase');
+        return $this->views->render('keeper/showcase/datagrids');
     }
 
     /**
