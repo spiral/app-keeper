@@ -28,7 +28,7 @@
     <script role="sf-options" type="application/json">
         {
             "api": {
-                "getList": "/keeper/testlist",
+                "getList": "/notifications",
                 "setAsRead": "/keeper/markasread"
             }
         }

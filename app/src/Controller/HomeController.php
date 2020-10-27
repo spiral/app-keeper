@@ -47,4 +47,28 @@ class HomeController
 
         return sprintf('Job ID: %s', $jobID);
     }
+
+    /**
+     * Fetches notifications for notification drawer
+     * Only include here recent notifications
+     * Implement datagrid for complete list if needed
+     * @Route(route="/notifications", methods="GET")
+     */
+    public function notifications(): array
+    {
+        return [
+            'status' => 200,
+            'unreadCount' => 1,
+            'data' => [
+                [
+                    'title' => 'Hello!',
+                    'body' => 'Real time notifications are now supported. Click <a href="https://github.com/spiral/toolkit/tree/master/packages/notifications">here</a> to read documentation',
+                    'read' => false,
+                    'icon' => 'download',
+                    'date' => 1597828433980,
+                    'id' => '1'
+                ],
+            ]
+        ];
+    }
 }

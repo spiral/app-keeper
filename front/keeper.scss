@@ -25,6 +25,18 @@
     }
 }
 
+.sf-header {
+    .js-sf-notifications-toggle {
+        .badge {
+            margin-left: 5px;
+            font-size: 100%;
+            border-radius: 13px;
+            min-width: 20px;
+            vertical-align: top;
+        }
+    }
+}
+
 .modal-header {
     border-bottom: none;
 }

@@ -40,6 +40,33 @@ class DashboardController
     }
 
     /**
+     * @Keeper\Action(route="/showcase/forms", methods="GET")
+     * @Keeper\Sitemap\Link(title="Forms", parent="showcase", options={"icon": "bahai"})
+     */
+    public function showcaseForms()
+    {
+        return $this->views->render('keeper:showcase');
+    }
+
+    /**
+     * @Keeper\Action(route="/showcase/qrcode", methods="GET")
+     * @Keeper\Sitemap\Link(title="QR Codes", parent="showcase", options={"icon": "bahai"})
+     */
+    public function showcaseQrCodes()
+    {
+        return $this->views->render('keeper:showcase');
+    }
+
+    /**
+     * @Keeper\Action(route="/showcase/datagrid", methods="GET")
+     * @Keeper\Sitemap\Link(title="Datagrids", parent="showcase", options={"icon": "bahai"})
+     */
+    public function showcaseDataGrids()
+    {
+        return $this->views->render('keeper:showcase');
+    }
+
+    /**
      * @Keeper\Action(route="/do", methods="POST")
      */
     public function do()
