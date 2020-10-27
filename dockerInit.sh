@@ -1,4 +1,4 @@
-[ ! -f .env1 ] && cp .env.sample .env
+[ ! -f .env ] && cp .env.sample .env
 docker-compose up -d --build && \
 docker cp keeper:/var/www/.env . && \
 docker cp keeper:/var/www/vendor . && \
