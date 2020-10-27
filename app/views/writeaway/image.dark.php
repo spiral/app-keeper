@@ -6,5 +6,6 @@
     height="${height}"
     data-id="${id}"
     data-piece="image"
+    data-name="${name}"
     class="${class}"
 />

@@ -25,7 +25,7 @@
     <div class="center">
         <div class="wrapper">
             <div class="placeholder" style="margin-bottom: 40px; padding-top: 40px">
-                <img src="/images/logo.svg" alt="Framework Logotype" width="200px"/>
+                <writeaway:image src="/images/logo.svg" alt="Framework Logotype" width="200px" id="logo" name="Logo" />
                 <h2>[[Welcome to Spiral Framework]]</h2>
 
                 <homepage:links git="https://github.com/spiral/app-keeper" style="font-weight: bold;"/>

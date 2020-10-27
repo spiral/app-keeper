@@ -2,6 +2,7 @@
     title="${title}"
     data-id="${id}"
     data-piece="html"
+    data-name="${name}"
     class="${class}"
 >
     ${context}

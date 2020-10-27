@@ -3,6 +3,7 @@
     data-id="${id}"
     data-piece="source"
     class="${class}"
+    data-name="${name}"
 >
     ${context}
 </div>
