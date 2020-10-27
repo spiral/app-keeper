@@ -66,9 +66,9 @@ class HomeController
                     'read' => false,
                     'icon' => 'download',
                     'date' => 1597828433980,
-                    'id' => '1'
+                    'id' => '1',
                 ],
-            ]
+            ],
         ];
     }
 }
