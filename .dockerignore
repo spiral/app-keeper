@@ -1,0 +1,5 @@
+docker
+docker-compose.yml
+.git
+.idea
+node_modules

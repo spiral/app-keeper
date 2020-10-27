@@ -8,4 +8,6 @@ spiral.exe
 .env
 .phpunit.result.cache
 app.db
+yarn-error.log
+public/generated
 *.js___jb_tmp___

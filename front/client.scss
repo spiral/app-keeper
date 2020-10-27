@@ -1,3 +1,6 @@
+@use "project-vars";
+@use "fonts";
+
 html {
     height: 90%;
 }
@@ -6,10 +9,10 @@ body {
     height: 100%;
     min-height: 100%;
     margin: 0;
-    color: #595a59;
-    font-family: "Helvetica", sans-serif;
+    color: project-vars.$am-text;
+    font-family: project-vars.$am-font-family-sans-serif;
     font-weight: lighter;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 .wrapper {
@@ -22,5 +25,5 @@ body {
 }
 
 a {
-    color: #5fa4ea;
+    color: project-vars.$am-primary;
 }
