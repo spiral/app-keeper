@@ -30,7 +30,8 @@
             "api": {
                 "getList": "/notifications",
                 "setAsRead": "/keeper/markasread"
-            }
+            },
+            "ws": "SpiralSocketConnection"
         }
     </script>
   </notifications:toggle>
