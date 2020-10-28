@@ -49,6 +49,24 @@ class DashboardController
     }
 
     /**
+     * @Keeper\Action(route="/showcase/autocomplete", methods="GET")
+     * @Keeper\Sitemap\Link(title="Autocomplete", parent="showcase", options={"icon": "bahai"})
+     */
+    public function showcaseAutocomplete()
+    {
+        return $this->views->render('keeper/showcase/autocomplete');
+    }
+
+    /**
+     * @Keeper\Action(route="/showcase/datepicker", methods="GET")
+     * @Keeper\Sitemap\Link(title="Datepicker", parent="showcase", options={"icon": "bahai"})
+     */
+    public function showcaseDatepicker()
+    {
+        return $this->views->render('keeper/showcase/datepicker');
+    }
+
+    /**
      * @Keeper\Action(route="/showcase/qrcode", methods="GET")
      * @Keeper\Sitemap\Link(title="QR Codes", parent="showcase", options={"icon": "bahai"})
      */
