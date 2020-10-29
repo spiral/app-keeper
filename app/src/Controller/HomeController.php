@@ -58,7 +58,7 @@ class HomeController
     {
         return [
             'status' => 200,
-            'unreadCount' => 1,
+            'unreadCount' => 0,
             'data' => [
                 [
                     'title' => 'Hello!',

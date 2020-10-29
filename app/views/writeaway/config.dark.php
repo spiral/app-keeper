@@ -4,7 +4,7 @@
         /**
          * WriteAwayBridge variable is put in global scope in application entry point by front end engineer
          */
-        WriteAwayBridge.start({
+        false && WriteAwayBridge.start({
                 imageGalleryUrl: "<?= ('writeaway/imagesList') ?>", // Url to fetch images list
                 getPieceBulkUrl: "<?= ('writeaway/pieceList') ?>", // Url to fetch piece data by multiple ids
                 getPieceUrl: "<?= ('writeaway/getPiece') ?>", // Url to fetch piece data. This is fired only for pieces that can't be read directly from DOM
