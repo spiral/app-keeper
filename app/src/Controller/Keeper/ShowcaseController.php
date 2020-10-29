@@ -38,7 +38,7 @@ class ShowcaseController
      */
     public function index()
     {
-        return $this->views->render('keeper:showcase');
+        return $this->views->render('keeper/showcase/intro');
     }
 
     /**

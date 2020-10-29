@@ -39,7 +39,7 @@
                     <form:date-js
                         name="date1"
                         label="Date"
-                        value=""
+                        value="2020-10-29T14:14:14+0300"
                         size="6"
                     />
                     </div>
@@ -49,7 +49,7 @@
                         @declare(syntax=off)<pre class="language-markup"><code>&lt;form:date-js
     name="date1"
     label="Date"
-    value=""
+    value="2020-10-29T14:14:14+0300"
     size="6"
 /&gt;</code></pre>@declare(syntax=on)</div>
 
@@ -113,7 +113,7 @@
                         enable-time="true"
                         force-confirm-button="true"
                         label="Date & Time"
-                        value=""
+                        value="2020-10-29T14:14:14+0300"
                         required="true"
                         size="6"
                     />
@@ -129,7 +129,7 @@
     enable-time="true"
     force-confirm-button="true"
     label="Date & Time"
-    value=""
+    value="2020-10-29T14:14:14+0300"
     required="true"
     size="6"
 /&gt;</code></pre>@declare(syntax=on)
@@ -147,7 +147,7 @@
                         enable-time="true"
                         no-calendar="true"
                         label="Time"
-                        value=""
+                        value="14:14 +0300"
                         size="6"
                     />
 
@@ -160,12 +160,13 @@
                         <utils:syntaxhilight />
                         @declare(syntax=off)<pre class="language-markup"><code>&lt;form:date-js
     display-format="HH:mm"
+    format="HH:mm ZZZ"
     force-confirm-button="true"
     name="date3"
     enable-time="true"
     no-calendar="true"
     label="Time"
-    value=""
+    value="14:14 +0300"
     size="6"
 /&gt;</code></pre>@declare(syntax=on)
                     </div>

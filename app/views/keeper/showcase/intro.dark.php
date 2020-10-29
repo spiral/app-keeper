@@ -140,7 +140,7 @@
       href="@@action('dashboard.index')"
       label="Back to Dashboard"
   /&gt;
-&lt;/ui:action&gt;</pre>
+&lt;/ui:action&gt;</code></pre>
 
                 <p>Use <strong>permission</strong> attribute to limit who can see the action.</p>
                 <pre class="language-markup"><code>
@@ -195,7 +195,7 @@
   kind="primary"
   confirm="Are you sure?"        #optional (default off)
   data="@@json(['key'=>'value'])" #optional (default none)
-/&gt;</pre>
+/&gt;</code></pre>
             </ui:panel>
             <ui:panel header="Delete Action" icon="trash" header-kind="danger">
                 <p>Use special delete action to send <strong>DELETE</strong> request with modal confirmation. The success or
@@ -213,29 +213,4 @@
         </ui:col.6>
 
     </ui:row>
-</ui:tab>
-
-<ui:tab id="qr" title="QR Codes">
-    <ui:panel>
-        <ui:row>
-            <ui:col.4>
-                <h2>SVG(default) QrCode</h2>
-                <ui:qrcode value="HK3ARG6MYFMIDDHB"/>
-            </ui:col.4>
-            <ui:col.4>
-                <h2>Canvas QrCode</h2>
-                <ui:qrcode value="https://spiral.dev/" type="canvas"/>
-            </ui:col.4>
-            <ui:col.4>
-                <h2>Custom Colors</h2>
-                <ui:qrcode
-                    value="https://spiral.dev/"
-                    type="canvas"
-                    size="200"
-                    bgColor="#f8f9fa"
-                    fgColor="#49545f"
-                    ecLevel="H"/>
-            </ui:col.4>
-        </ui:row>
-    </ui:panel>
 </ui:tab>

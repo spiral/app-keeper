@@ -15,8 +15,8 @@
     <ui:panel header="QR Codes">
         <div class="row">
             <div class="col-sm-12 col-md-6">
+                <h3>Rendered as SVG (default)</h3>
                 <ui:qrcode value="HK3ARG6MYFMIDDHB"/>
-                <p>Rendered as SVG (default)</p>
             </div>
 
             <div class="col-sm-12 col-md-6">
@@ -28,8 +28,8 @@
             </div>
 
             <div class="col-sm-12 col-md-6">
+                <h3>Rendered as CANVAS</h3>
                 <ui:qrcode value="https://spiral.dev/" type="canvas"/>
-                <p>Rendered as CANVAS</p>
             </div>
 
             <div class="col-sm-12 col-md-6">
@@ -43,6 +43,7 @@
             </div>
 
             <div class="col-sm-12 col-md-6">
+                <h3>Uses custom colors</h3>
                 <ui:qrcode
                     value="https://spiral.dev/"
                     type="canvas"
@@ -51,7 +52,6 @@
                     fgColor="#49545f"
                     ecLevel="H"
                 />
-                <p>Uses custom colors</p>
             </div>
 
             <div class="col-sm-12 col-md-6">
@@ -76,6 +76,7 @@
             </div>
 
             <div class="col-sm-12 col-md-6">
+                <h3>Custom Logo</h3>
                 <ui:qrcode
                     value="https://spiral.dev/"
                     type="canvas"
@@ -90,7 +91,6 @@
                     logoY="125"
                     logoMargin="0"
                 />
-                <p>Uses custom logo inside</p>
             </div>
 
             <div class="col-sm-12 col-md-6">

@@ -147,7 +147,7 @@
         }
     &lt;/script&gt;
     &#64;declare(syntax=on)
-&lt;/form:autocomplete></code></pre>@declare(syntax=on)
+&lt;/form:autocomplete&gt;</code></pre>@declare(syntax=on)
                     </div>
 
                     <div class="col-sm-12">
@@ -186,10 +186,24 @@
                         <utils:syntaxhilight />
                         @declare(syntax=off)<pre class="language-markup"><code>&lt;form:autocomplete
     name="date"
-    label="Native Date Picker"
-    value=""
-    size="12"
-/&gt;</code></pre>@declare(syntax=on)
+    label="Autocomplete That Exposes Label"
+    description="This autocomplete has input text being sent to server too"
+    value="1"
+    labelValue="Admin"
+    size="6"
+&gt;
+    &#64;declare(syntax=off)
+    &lt;script role="sf-options" type="application/json"&gt;
+        {
+            "url": "/keeper/users/list",
+            "exposeLabelAs": "valueLabel",
+            "exposeLabelAsRequired": true,
+            "searchKey": "firstName",
+            "valueKey": "id"
+        }
+    &lt;/script&gt;
+    &#64;declare(syntax=on)
+&lt;/form:autocomplete&gt;</code></pre>@declare(syntax=on)
 
                     </div>
 
@@ -223,10 +237,22 @@
                         <utils:syntaxhilight />
                         @declare(syntax=off)<pre class="language-markup"><code>&lt;form:autocomplete
     name="date"
-    label="Native Date Picker"
-    value=""
-    size="12"
-/&gt;</code></pre>@declare(syntax=on)
+    label="Multi-select Autocomplete"
+    value="1,2"
+    size="6"
+&gt;
+    &#64;declare(syntax=off)
+    &lt;script role="sf-options" type="application/json"&gt;
+        {
+            "url": "/keeper/users/list",
+            "isMultiple": true,
+            "inputTemplate": "{{firstName}} {{lastName}}",
+            "suggestTemplate": "{{firstName}} {{lastName}}",
+            "valueKey": "id"
+        }
+    &lt;/script&gt;
+    &#64;declare(syntax=on)
+&lt;/form:autocomplete&gt;</code></pre>@declare(syntax=on)
 
                     </div>
 
