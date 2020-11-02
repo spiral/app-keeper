@@ -42,7 +42,7 @@ class ShowcaseController
     }
 
     /**
-     * @Keeper\Action(route="/showcase/forms", methods="GET")
+     * @Keeper\Action(route="/forms", methods="GET")
      * @Keeper\Sitemap\Link(title="Forms", parent="showcase", options={"icon": "list-alt"})
      */
     public function showcaseForms()
@@ -51,7 +51,7 @@ class ShowcaseController
     }
 
     /**
-     * @Keeper\Action(route="/showcase/autocomplete", methods="GET")
+     * @Keeper\Action(route="/autocomplete", methods="GET")
      * @Keeper\Sitemap\Link(title="Autocomplete", parent="showcase", options={"icon": "i-cursor"})
      */
     public function showcaseAutocomplete()
@@ -60,7 +60,7 @@ class ShowcaseController
     }
 
     /**
-     * @Keeper\Action(route="/showcase/tinymce", methods="GET")
+     * @Keeper\Action(route="/tinymce", methods="GET")
      * @Keeper\Sitemap\Link(title="Rich Text Editor", parent="showcase", options={"icon": "edit"})
      */
     public function showcaseRichText()
@@ -69,7 +69,7 @@ class ShowcaseController
     }
 
     /**
-     * @Keeper\Action(route="/showcase/datepicker", methods="GET")
+     * @Keeper\Action(route="/datepicker", methods="GET")
      * @Keeper\Sitemap\Link(title="Datepicker", parent="showcase", options={"icon": "calendar"})
      */
     public function showcaseDatepicker()
@@ -78,7 +78,7 @@ class ShowcaseController
     }
 
     /**
-     * @Keeper\Action(route="/showcase/qrcode", methods="GET")
+     * @Keeper\Action(route="/qrcode", methods="GET")
      * @Keeper\Sitemap\Link(title="QR Codes", parent="showcase", options={"icon": "qrcode"})
      */
     public function showcaseQrCodes()
@@ -87,7 +87,7 @@ class ShowcaseController
     }
 
     /**
-     * @Keeper\Action(route="/showcase/datagrid", methods="GET")
+     * @Keeper\Action(route="/datagrid", methods="GET")
      * @Keeper\Sitemap\Link(title="Datagrids", parent="showcase", options={"icon": "table"})
      */
     public function showcaseDataGrids()
