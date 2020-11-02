@@ -3,4 +3,4 @@ version: "3.8"
 services:
   nginx:
     volumes:
-      - ./public/generated:/usr/share/nginx/html
+      - ./public:/usr/share/nginx/html
