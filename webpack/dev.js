@@ -44,6 +44,9 @@ const config = {
     ie11: [
       './front/ie11',
     ],
+    writeaway: [
+      './front/writeaway',
+    ],
   },
 
   resolve: {
@@ -52,8 +55,8 @@ const config = {
   },
 
   output: {
-    path: path.resolve('./public/generated/'),
-    publicPath: `http://${host}:${port}/generated`,
+    path: path.resolve('./public/generated'),
+    publicPath: isHotReload ? `http://${host}:${port}/generated/` : '/generated/',
     filename: '[name].js',
     chunkFilename: '[name].chunk.js',
     pathinfo: true,

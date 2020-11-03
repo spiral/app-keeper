@@ -6,14 +6,14 @@
   <sitemap:init/>
 </stack:push>
 
-<stack:push name="styles">
+<block:styles name="styles">
     @if(!env('FRONT_END_PUBLIC_URL'))
         <link rel="stylesheet" href="/generated/css/keeper.css"/>
     @endif
     @if(env('FRONT_END_PUBLIC_URL'))
         <link rel="stylesheet" href="{{ env('FRONT_END_PUBLIC_URL') }}/generated/css/keeper.css"/>
     @endif
-</stack:push>
+</block:styles>
 
 <stack:push name="scripts">
     <script type="text/javascript" src="/generated/ie11.js"></script>
