@@ -31,15 +31,6 @@ class DashboardController
     }
 
     /**
-     * @Keeper\Action(route="/showcase", methods="GET")
-     * @Keeper\Sitemap\Link(title="Keeper Showcase", parent="root", options={"icon": "bahai"})
-     */
-    public function showcase()
-    {
-        return $this->views->render('keeper:showcase');
-    }
-
-    /**
      * @Keeper\Action(route="/do", methods="POST")
      */
     public function do()

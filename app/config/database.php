@@ -38,7 +38,7 @@ return [
     'drivers'   => [
         'sqlite' => [
             'driver'     => \Spiral\Database\Driver\SQLite\SQLiteDriver::class,
-            'connection' => 'sqlite:' . directory('root') . 'app.db',
+            'connection' => 'sqlite:' . directory('root') . '/../app.db',
             'profiling'  => true,
         ],
     ],

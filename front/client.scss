@@ -1,0 +1,35 @@
+@use "project-vars";
+@use "fonts";
+
+html {
+    height: 90%;
+}
+
+body {
+    height: 100%;
+    min-height: 100%;
+    margin: 0;
+    color: project-vars.$am-text;
+    font-family: project-vars.$am-font-family-sans-serif;
+    font-weight: lighter;
+    font-size: 16px;
+    background: #ebf1ff;
+}
+
+.center {
+    background: white;
+    position: relative;
+    top: 50%;
+    transform: translate(0, -50%);
+    -webkit-transform: translate(0, -50%);
+    text-align: center;
+}
+
+.wrapper {
+    width: 50%;
+    margin: 0 auto;
+}
+
+a {
+    color: project-vars.$am-primary;
+}

@@ -1,0 +1,9 @@
+version: "3.8"
+
+services:
+  php:
+    volumes:
+      - ./:/var/www
+    env_file:
+      - .env
+    command: "/var/server/spiral serve -v -d -o http.workers.pool.numWorkers=1 -o http.workers.pool.maxJobs=1"

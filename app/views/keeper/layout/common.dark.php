@@ -6,15 +6,29 @@
   <sitemap:init/>
 </stack:push>
 
-<block:styles>
-  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="/keeper/keeper.css"/>
+<block:styles name="styles">
+    @if(!env('FRONT_END_PUBLIC_URL'))
+        <link rel="stylesheet" href="/generated/css/keeper.css"/>
+    @endif
+    @if(env('FRONT_END_PUBLIC_URL'))
+        <link rel="stylesheet" href="{{ env('FRONT_END_PUBLIC_URL') }}/generated/css/keeper.css"/>
+    @endif
 </block:styles>
+
+<stack:push name="scripts">
+    <script type="text/javascript" src="/generated/ie11.js"></script>
+    @if(env('FRONT_END_PUBLIC_URL'))
+        <script type="text/javascript" src="{{ env('FRONT_END_PUBLIC_URL') }}/generated/keeper.js"></script>
+    @endif
+    @if(!env('FRONT_END_PUBLIC_URL'))
+        <script type="text/javascript" src="/generated/keeper.js"></script>
+    @endif
+</stack:push>
 
 <define:body>
   <keeper:sidebar activeRoute="${activeRoute}">
     <block:header>
-      <div class="sf-sidebar__logo" style="background-color: #364048">
+      <div class="sf-sidebar__logo">
         <img src="/logo.svg"/>
         <span>Spiral Framework</span>
       </div>
@@ -39,4 +53,6 @@
 
     <block:main/>
   </main>
+
+    <notifications:drawer></notifications:drawer>
 </define:body>

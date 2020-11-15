@@ -1,0 +1,56 @@
+@use "project-vars";
+@use "fonts";
+
+@use "~@spiral-toolkit/keeper/src/vars" with (
+  $primary: project-vars.$am-primary,
+  // $warning: project-vars.$clr-orange-light,
+  $sf-primary: project-vars.$am-primary,
+  $sf-sidebar: project-vars.$am-primary-dark,
+  $sf-font-family-sans-serif: project-vars.$am-font-family-sans-serif,
+);
+
+@import "~@spiral-toolkit/keeper/src/keeper";
+@import "~@spiral-toolkit/keeper/src/components";
+
+.sf-sidebar__logo svg {
+    width: 200px;
+    fill: white;
+}
+
+.sf-user-short-info__name {
+    color: project-vars.$am-primary;
+
+    &:hover {
+        color: project-vars.$am-primary-dark;
+    }
+}
+
+.sf-header {
+    .js-sf-notifications-toggle {
+        .badge {
+            margin-left: 5px;
+            font-size: 100%;
+            border-radius: 13px;
+            min-width: 20px;
+            vertical-align: top;
+        }
+    }
+}
+
+.modal-header {
+    border-bottom: none;
+}
+
+.modal-footer {
+    border-top: none;
+}
+
+.with-form-control .form-group {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.card-body pre[class*="language-"]>code {
+    border-left: none;
+    box-shadow: 0px 1px 0px 0px #358ccb, 0px 0px 0px 1px #dfdfdf;
+}
