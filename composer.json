@@ -16,6 +16,7 @@
     ],
     "require": {
         "php": ">=7.2",
+        "ext-json": "*",
         "spiral/framework": "^2.7",
         "spiral/jobs": "^2.0",
         "spiral/roadrunner": "^1.4",
