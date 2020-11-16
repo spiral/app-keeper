@@ -33,6 +33,7 @@
         "spiral/toolkit": "^v1.1",
         "spiral/helpers": "^1.0",
         "spiral/keeper": "^0.5a",
+        "spiral/writeaway": "dev-master",
         "fzaninotto/faker": "^1.9"
     },
     "require-dev": {
