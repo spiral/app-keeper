@@ -62,6 +62,7 @@
         "publish-cmd": "php app.php publish"
     },
     "config": {
+        "bin-dir": "bin",
         "sort-packages": true
     },
     "minimum-stability": "dev",
