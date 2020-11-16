@@ -95,5 +95,8 @@ class App extends Kernel
         Framework\CommandBootloader::class,
         Prototype\PrototypeBootloader::class,
         Scaffolder\ScaffolderBootloader::class,
+
+        //App
+        Bootloader\AppBootloader::class,
     ];
 }
