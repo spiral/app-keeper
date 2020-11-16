@@ -20,6 +20,7 @@ use Spiral\Bootloader\Auth\AuthBootloader;
 use Spiral\Security\PermissionsInterface;
 use Spiral\Security\Rule\AllowRule;
 use Spiral\Security\Rule\ForbidRule;
+use Spiral\Writeaway\Config\WriteawayConfig;
 
 class SecurityBootloader extends Bootloader
 {
@@ -37,9 +38,13 @@ class SecurityBootloader extends Bootloader
     /**
      * @param AuthBootloader       $auth
      * @param PermissionsInterface $permissions
+     * @param WriteawayConfig      $writeawayConfig
      */
-    public function boot(AuthBootloader $auth, PermissionsInterface $permissions): void
-    {
+    public function boot(
+        AuthBootloader $auth,
+        PermissionsInterface $permissions,
+        WriteawayConfig $writeawayConfig
+    ): void {
         $auth->addActorProvider(UserRepository::class);
 
         $permissions->addRole('guest');
@@ -76,5 +81,9 @@ class SecurityBootloader extends Bootloader
         $permissions->associate('admin', 'users.roles', ForbidRule::class);
         $permissions->associate('admin', 'users.update', NotSelfOrOtherAdminRule::class);
         $permissions->associate('admin', 'users.create', AllowRule::class);
+
+        // writeaway
+        $permissions->associate('admin', $writeawayConfig->editPermission(), AllowRule::class);
+        $permissions->associate('super-admin', $writeawayConfig->editPermission(), AllowRule::class);
     }
 }
