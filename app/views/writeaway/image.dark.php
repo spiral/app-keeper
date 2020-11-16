@@ -8,4 +8,6 @@
     data-piece="image"
     data-name="${name}"
     class="${class}"
+    data-namespace="{{ $this->view->getNamespace() }}"
+    data-view="{{ $this->view->getName() }}"
 />

@@ -45,5 +45,5 @@
             </div>
         </writeaway:background>
     </div>
-    <writeaway:config></writeaway:config>
+    <writeaway:config/>
 </define:body>
