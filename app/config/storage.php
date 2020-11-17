@@ -9,8 +9,8 @@ return [
         'local'     => [
             'class'   => Server\LocalServer::class,
             'options' => [
-                'home' => directory('public')
-            ]
+                'home' => directory('public'),
+            ],
         ],
     ],
 
@@ -20,8 +20,8 @@ return [
             'prefix'  => '/uploads/',
             'options' => [
                 //Directory has to be specified relatively to root directory of associated server
-                'directory' => 'uploads/'
-            ]
+                'directory' => 'uploads/',
+            ],
         ],
-    ]
+    ],
 ];
