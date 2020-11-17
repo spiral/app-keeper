@@ -11,6 +11,6 @@ use Spiral\Writeaway\MetaProviderInterface;
 class AppBootloader extends Bootloader
 {
     protected const BINDINGS = [
-        MetaProviderInterface::class => MetaProvider::class
+        MetaProviderInterface::class => MetaProvider::class,
     ];
 }

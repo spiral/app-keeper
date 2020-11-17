@@ -13,115 +13,115 @@ class OrmDefaultFbfb062fd99ec33370318688c060f745 extends Migration
         $this->table('images')
             ->addColumn('id', 'primary', [
                 'nullable' => false,
-                'default'  => null
+                'default'  => null,
             ])
             ->addColumn('width', 'integer', [
                 'nullable' => false,
-                'default'  => null
+                'default'  => null,
             ])
             ->addColumn('height', 'integer', [
                 'nullable' => false,
-                'default'  => null
+                'default'  => null,
             ])
             ->addColumn('size', 'integer', [
                 'nullable' => false,
-                'default'  => null
+                'default'  => null,
             ])
             ->addColumn('ratio', 'float', [
                 'nullable' => false,
-                'default'  => null
+                'default'  => null,
             ])
             ->addColumn('thumbnail', 'text', [
                 'nullable' => false,
-                'default'  => null
+                'default'  => null,
             ])
             ->addColumn('original', 'text', [
                 'nullable' => false,
-                'default'  => null
+                'default'  => null,
             ])
             ->addColumn('time_created', 'datetime', [
                 'nullable' => true,
-                'default'  => null
+                'default'  => null,
             ])
             ->addColumn('time_updated', 'datetime', [
                 'nullable' => true,
-                'default'  => null
+                'default'  => null,
             ])
-            ->setPrimaryKeys(["id"])
+            ->setPrimaryKeys(['id'])
             ->create();
-        
+
         $this->table('pieces')
             ->addColumn('data', 'longText', [
                 'nullable' => false,
-                'default'  => null
+                'default'  => null,
             ])
             ->addColumn('meta', 'longText', [
                 'nullable' => false,
-                'default'  => null
+                'default'  => null,
             ])
             ->addColumn('id', 'string', [
                 'nullable' => false,
-                'default'  => null
+                'default'  => null,
             ])
             ->addColumn('name', 'string', [
                 'nullable' => false,
-                'default'  => null
+                'default'  => null,
             ])
             ->addColumn('type', 'string', [
                 'nullable' => false,
-                'default'  => null
+                'default'  => null,
             ])
             ->addColumn('time_created', 'datetime', [
                 'nullable' => true,
-                'default'  => null
+                'default'  => null,
             ])
             ->addColumn('time_updated', 'datetime', [
                 'nullable' => true,
-                'default'  => null
+                'default'  => null,
             ])
-            ->addIndex(["name", "type"], [
+            ->addIndex(['name', 'type'], [
                 'name'   => 'pieces_index_name_type_5fb2a3fbeaf0f',
-                'unique' => true
+                'unique' => true,
             ])
-            ->setPrimaryKeys(["id"])
+            ->setPrimaryKeys(['id'])
             ->create();
-        
+
         $this->table('piece_locations')
             ->addColumn('id', 'primary', [
                 'nullable' => false,
-                'default'  => null
+                'default'  => null,
             ])
             ->addColumn('namespace', 'string', [
                 'nullable' => false,
-                'default'  => null
+                'default'  => null,
             ])
             ->addColumn('view', 'string', [
                 'nullable' => false,
-                'default'  => null
+                'default'  => null,
             ])
             ->addColumn('piece_id', 'string', [
                 'nullable' => false,
-                'default'  => null
+                'default'  => null,
             ])
-            ->addIndex(["piece_id"], [
+            ->addIndex(['piece_id'], [
                 'name'   => 'piece_locations_index_piece_id_5fb2a3fbe691b',
-                'unique' => false
+                'unique' => false,
             ])
-            ->addForeignKey(["piece_id"], 'pieces', ["id"], [
+            ->addForeignKey(['piece_id'], 'pieces', ['id'], [
                 'name'   => 'piece_locations_piece_id_fk',
                 'delete' => 'CASCADE',
-                'update' => 'CASCADE'
+                'update' => 'CASCADE',
             ])
-            ->setPrimaryKeys(["id"])
+            ->setPrimaryKeys(['id'])
             ->create();
     }
 
     public function down()
     {
         $this->table('piece_locations')->drop();
-        
+
         $this->table('pieces')->drop();
-        
+
         $this->table('images')->drop();
     }
 }
