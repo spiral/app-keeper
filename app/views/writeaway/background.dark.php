@@ -14,12 +14,11 @@ $pieceData = $writeawayEditor->getPiece(
     $this->view->getNamespace(),
     $this->view->getName()
 );
-echo $pieceData['html']
 ?>
 <div
     title="${title}"
     class="${class}"
-    style="background-image: url('${src}'); background-color: ${bgColor}; background-repeat: ${bgRepeat}; background-size: ${bgSize}; background-position: ${bgPosition};"
+    style="background-image: url('{!! $pieceData['src'] !!}'); background-color: {!! $pieceData['bgColor'] !!}; background-repeat: {!! $pieceData['bgRepeat'] !!}; background-size: {!! $pieceData['bgSize'] !!}; background-position: {!! $pieceData['bgPosition'] !!};"
     @if($writeawayEditor->allows('background', inject('id')))
     data-id="${id}"
     data-piece="background"
