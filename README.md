@@ -14,6 +14,7 @@ Make sure that your server is configured with following PHP version and extensio
 * PHP 7.2+, 64bit
 * *mb-string* extension
 * PDO Extension with desired database drivers (default SQLite)
+* For FrontEnd build yarn and nodejs are required.
 
 Application Bundle
 --------
@@ -40,7 +41,7 @@ Installation
 ```
 composer create-project spiral/app-keeper --stability dev
 cd app-keeper
-yarn build
+yarn && yarn build
 ```
 
 > Application server will be downloaded automatically (`php-curl` and `php-zip` required).
