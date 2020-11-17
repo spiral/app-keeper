@@ -7,7 +7,7 @@ namespace App\Service\Writeaway;
 use App\Database\User;
 use Spiral\Security\ActorInterface;
 use Spiral\Writeaway\DTO\Meta;
-use Spiral\Writeaway\Service\MetaProviderInterface;
+use Spiral\Writeaway\MetaProviderInterface;
 use Spiral\Writeaway\Service\NullMetaProvider;
 
 class MetaProvider implements MetaProviderInterface

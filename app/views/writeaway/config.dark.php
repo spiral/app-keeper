@@ -30,6 +30,7 @@
 </stack:push>
 
 <stack:push name="styles" unique-id="writeaway">
+    @inject($writeawayEditor, \Spiral\Writeaway\Editor::class)
     @if($writeawayEditor->allows())
         <link rel="stylesheet" href="/generated/css/writeaway.css"/>
     @endif

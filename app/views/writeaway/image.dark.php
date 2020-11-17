@@ -22,7 +22,7 @@ ${context}
 $pieceData = $writeawayEditor->getPiece(
     'image',
     inject('id'),
-    ['todo'/*todo*/],
+    ['html' => 'todo'/*todo*/],
     $this->view->getNamespace(),
     $this->view->getName()
 );
