@@ -56,6 +56,7 @@ class App extends Kernel
         Framework\Http\CsrfBootloader::class,
         Framework\Http\PaginationBootloader::class,
         Framework\Http\RouterBootloader::class,
+        Framework\Http\JsonPayloadsBootloader::class,
 
         /* -- ORM and databases --*/
         Framework\Database\DatabaseBootloader::class,
