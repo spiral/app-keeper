@@ -16,12 +16,12 @@
     ${context}
     <?php
     $pieceData = $writeawayEditor->getPiece(
-        'background',
-        inject('id'),
-        ['html' => ob_get_clean()],
-        $this->view->getNamespace(),
-        $this->view->getName()
-    );
+    'background',
+    inject('id'),
+    ['html' => ob_get_clean()],
+    $this->view->getNamespace(),
+    $this->view->getName()
+);
     echo $pieceData['html']
     ?>
 </div>
