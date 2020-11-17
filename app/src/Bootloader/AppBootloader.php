@@ -6,7 +6,7 @@ namespace App\Bootloader;
 
 use App\Service\Writeaway\MetaProvider;
 use Spiral\Boot\Bootloader\Bootloader;
-use Spiral\Writeaway\Service\MetaProviderInterface;
+use Spiral\Writeaway\MetaProviderInterface;
 
 class AppBootloader extends Bootloader
 {

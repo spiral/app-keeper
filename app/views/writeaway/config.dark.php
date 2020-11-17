@@ -1,16 +1,13 @@
 <stack:push name="scripts" unique-id="writeaway">
-    <script type="text/javascript" src="/generated/writeaway.js"></script>
-    <script type="text/javascript">
-    <?php
-        /**
-         * @var Spiral\Writeaway\Service\MetaProviderInterface $writeawayMetaProvider
-         */
-    ?>
-    @inject($writeawayMetaProvider, \Spiral\Writeaway\Service\MetaProviderInterface::class);
-        /**
-         * WriteAwayBridge variable is put in global scope in application entry point by front end engineer
-         */
-        false && WriteAwayBridge.start({
+    <?php /** @var \Spiral\Writeaway\Editor $writeawayEditor */ ?>
+    @inject($writeawayEditor, \Spiral\Writeaway\Editor::class)
+    @if($writeawayEditor->allows())
+        <script type="text/javascript" src="/generated/writeaway.js"></script>
+        <script type="text/javascript">
+            /**
+             * WriteAwayBridge variable is put in global scope in application entry point by front end engineer
+             */
+            WriteAwayBridge.start({
                 imageGalleryUrl: "@route('writeaway:images:list')", // Url to fetch images list
                 uploadUrl: "@route('writeaway:images:upload')", // Url to upload image resources
                 deleteImageUrl: "@route('writeaway:images:delete')" // Url to delete image
@@ -25,12 +22,15 @@
                     // pickerColors: ["red", "blue"]
                 }
             },
-            @json($writeawayMetaProvider->provide()->toArray()),
+            @json($writeawayEditor->getMeta()),
             typeof window.SpiralSocketConnection !== 'undefined' ? WriteAwayBridge.useWS(window.SpiralSocketConnection) : undefined,
         );
-    </script>
+        </script>
+    @endif
 </stack:push>
 
 <stack:push name="styles" unique-id="writeaway">
-    <link rel="stylesheet" href="/generated/css/writeaway.css"/>
+    @if($writeawayEditor->allows())
+        <link rel="stylesheet" href="/generated/css/writeaway.css"/>
+    @endif
 </stack:push>
