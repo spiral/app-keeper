@@ -1207,10 +1207,10 @@
   resolved "https://registry.yarnpkg.com/@writeaway/plugin-seo/-/plugin-seo-2.1.1.tgz#aad63299f343330334b714a037a07be26e59897c"
   integrity sha512-CYwnlkr0Sw2/dwNlQ82kUaM17/ZEwfrO6WAWpfGJ+v3puGIZA6ogjm3LiRcULBEDTAQuCCqFSTHrWOjgxCmdEg==
 
-"@writeaway/spiral-bridge@2.1.6":
-  version "2.1.6"
-  resolved "https://registry.yarnpkg.com/@writeaway/spiral-bridge/-/spiral-bridge-2.1.6.tgz#1e4228d0656d497608c5e869b4c32bc38a84fc8f"
-  integrity sha512-JIJBafnmhPuuW0LQEBZ9JqZZVcQYDHOQH1NT8H70pLT8azew3ANIIpuRjp/vAMiYJfRImbkgn/Lxi7F0vD20YQ==
+"@writeaway/spiral-bridge@2.1.7":
+  version "2.1.7"
+  resolved "https://registry.yarnpkg.com/@writeaway/spiral-bridge/-/spiral-bridge-2.1.7.tgz#eb80c4b7b1e4a060be90eacb81d7519d0d379eb7"
+  integrity sha512-JkAvY72pwTnh5KGuokOEKlIdP30/xuoWI5rfy9T/QkRxg+tdlxDtryWEI8bMtU832dxq422L5heOOO4PDFBNGQ==
   dependencies:
     "@writeaway/core" "^2.1.3"
     "@writeaway/plugin-codemirror" "^2.1.1"
