@@ -6,9 +6,10 @@
 <?php ob_start(); ?>
 ${context}
 <?php
+$seoPieceID = inject('id', "{$this->view->getNamespace()}:{$this->view->getName()}");
 $pieceData = $writeawayEditor->getPiece(
     'seo',
-    inject('id', "{$this->view->getNamespace()}:{$this->view->getName()}"),
+    $seoPieceID,
     [
         'title'       => inject('title'),
         'description' => inject('description'),
@@ -20,7 +21,7 @@ $pieceData = $writeawayEditor->getPiece(
 );
 echo $pieceData['header']
 ?>
-@if($writeawayEditor->allows('seo', inject('id', "{$this->view->getNamespace()}:{$this->view->getName()}")))
+@if($writeawayEditor->allows('seo',$seoPieceID))
     <script type="application/javascript">
         var SEO_META = {
             id: "${id}",
@@ -28,6 +29,7 @@ echo $pieceData['header']
             view: "{{ $this->view->getName() }}"
         };
         var SEO_HEADER = "<?php echo $pieceData['header'] ?>"; // TODO: Тут надо заескейпить
+
     </script>
 @endif
 
