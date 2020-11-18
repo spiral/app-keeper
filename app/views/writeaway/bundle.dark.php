@@ -3,3 +3,4 @@
 <use:element path="writeaway/image" as="writeaway:image"/>
 <use:element path="writeaway/html" as="writeaway:html"/>
 <use:element path="writeaway/source" as="writeaway:source"/>
+<use:element path="writeaway/seo" as="writeaway:seo"/>

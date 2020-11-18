@@ -13,10 +13,9 @@
                 deleteImageUrl: "@route('writeaway:images:delete')", // Url to delete image
                 getPieceUrl: "@route('writeaway:pieces:get')", // Url to fetch piece data. This is fired only for pieces that can't be read directly from DOM
                 savePieceUrl: "@route('writeaway:pieces:save')", // Url to save piece. This may be overrided by piece container 'data-save-url' attribute
-                getPieceBulkUrl: "@route('writeaway:pieces:bulk')", // Url to fetch piece data by multiple ids
-                saveMetaUrl: "unknown to API", // Url to save SEO data from SEO editor
+                getPieceBulkUrl: "@route('writeaway:pieces:bulk')" // Url to fetch piece data by multiple ids
             },
-            "<meta></meta>", // Specify HTML for custom meta page headers here for SEO Editor,
+            window.SEO_HEADER || '', // Specify HTML for custom meta page headers here for SEO Editor,
             {
                 html: { // Options per editor type, if any
                     // pickerColors: ["red", "blue"]
