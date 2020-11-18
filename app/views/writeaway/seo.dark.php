@@ -25,11 +25,11 @@ $pieceData = $writeawayEditor->getPiece(
 @if($writeawayEditor->allows('seo',$seoPieceID))
     <script type="application/javascript">
         var SEO_META = {
-            id: "{{ $seoPieceID }}",
+            id: {{ $seoPieceID }},
             namespace: {{ $this->view->getNamespace() }},
             view: {{ $this->view->getName() }}
         };
-        var SEO_HEADER = "{{ $pieceData['header'] }}"; // TODO: Тут надо заескейпить
+        var SEO_HEADER = {{ $pieceData['header'] }};
     </script>
 @endif
 
