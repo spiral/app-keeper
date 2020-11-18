@@ -6,9 +6,10 @@
 <?php ob_start(); ?>
 ${context}
 <?php
+$seoPieceID = inject('id', "{$this->view->getNamespace()}:{$this->view->getName()}");
 $pieceData = $writeawayEditor->getPiece(
     'seo',
-    inject('id'), // TODO: Сдесь надо чтобы совпадало с идом ниже
+    $seoPieceID,
     [
         'title'       => inject('title'),
         'description' => inject('description'),
@@ -20,14 +21,15 @@ $pieceData = $writeawayEditor->getPiece(
 );
 echo $pieceData['header']
 ?>
-@if($writeawayEditor->allows('seo', inject('id')))
+@if($writeawayEditor->allows('seo',$seoPieceID))
     <script type="application/javascript">
         var SEO_META = {
-            id: "${id}:" + {{ $this->view->getNamespace() }} + ":" + {{ $this->view->getName() }},
+            id: "${seoPieceID}", // TODO: Вывести тут $seoPieceID
             namespace: {{ $this->view->getNamespace() }},
             view: {{ $this->view->getName() }}
         };
         var SEO_HEADER = "<?php echo $pieceData['header'] ?>"; // TODO: Тут надо заескейпить
+
     </script>
 @endif
 
