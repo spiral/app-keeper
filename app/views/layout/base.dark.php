@@ -3,7 +3,7 @@
 <use:bundle path="writeaway/bundle"/>
 
 <head>
-    <writeaway:seo title="${title}" description="${description}" keywords="${keywords}" id="seo">
+    <writeaway:seo title="${title}" description="${description}" keywords="${keywords}">
         <!-- Open Graph / Facebook -->
         <meta property="og:type" content="website">
         <meta property="og:title" content="${title}">
