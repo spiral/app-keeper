@@ -1,15 +1,20 @@
 <?php /** @var \Spiral\Writeaway\Editor $writeawayEditor */ ?>
 @inject($writeawayEditor, \Spiral\Writeaway\Editor::class)
 <title>${title}</title>
-<meta name="description" content="${description}" />
-<meta name="keywords" content="${keywords}" />
+<meta name="description" content="${description}"/>
+<meta name="keywords" content="${keywords}"/>
 <?php ob_start(); ?>
 ${context}
 <?php
 $pieceData = $writeawayEditor->getPiece(
     'seo',
     inject('id'),
-    ['header' => ob_get_clean()],
+    [
+        'title'       => inject('title'),
+        'description' => inject('description'),
+        'keywords'    => inject('keywords'),
+        'header'      => ob_get_clean()
+    ],
     $this->view->getNamespace(),
     $this->view->getName()
 );
