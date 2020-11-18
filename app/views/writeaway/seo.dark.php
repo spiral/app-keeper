@@ -8,7 +8,7 @@ ${context}
 <?php
 $pieceData = $writeawayEditor->getPiece(
     'seo',
-    inject('id'),
+    inject('id', "{$this->view->getNamespace()}:{$this->view->getName()}"),
     [
         'title'       => inject('title'),
         'description' => inject('description'),
@@ -20,7 +20,7 @@ $pieceData = $writeawayEditor->getPiece(
 );
 echo $pieceData['header']
 ?>
-@if($writeawayEditor->allows('seo', inject('id')))
+@if($writeawayEditor->allows('seo', inject('id', "{$this->view->getNamespace()}:{$this->view->getName()}")))
     <script type="application/javascript">
         var SEO_META = {
             id: "${id}",
