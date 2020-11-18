@@ -1,8 +1,5 @@
 <?php /** @var \Spiral\Writeaway\Editor $writeawayEditor */ ?>
 @inject($writeawayEditor, \Spiral\Writeaway\Editor::class)
-<title>${title}</title>
-<meta name="description" content="${description}"/>
-<meta name="keywords" content="${keywords}"/>
 <?php ob_start(); ?>
 ${context}
 <?php
@@ -19,8 +16,12 @@ $pieceData = $writeawayEditor->getPiece(
     $this->view->getNamespace(),
     $this->view->getName()
 );
-echo $pieceData['header']
 ?>
+<title>{{ $pieceData['title'] }}</title>
+<meta name="description" content="{{ $pieceData['description'] }}"/>
+<meta name="keywords" content="{{ $pieceData['keywords'] }}"/>
+{!! $pieceData['header'] !!}
+
 @if($writeawayEditor->allows('seo',$seoPieceID))
     <script type="application/javascript">
         var SEO_META = {
