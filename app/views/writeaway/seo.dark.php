@@ -21,8 +21,8 @@ echo $pieceData['header']
             id: "${id}",
             namespace: "{{ $this->view->getNamespace() }}",
             view: "{{ $this->view->getName() }}"
-        }
-        var SEO_HEADER = "<?php echo $pieceData['header'] ?>"
+        };
+        var SEO_HEADER = "<?php echo $pieceData['header'] ?>"; // TODO: Тут надо заескейпить
     </script>
 @endif
 
