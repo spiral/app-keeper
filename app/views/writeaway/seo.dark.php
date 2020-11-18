@@ -13,7 +13,7 @@ $pieceData = $writeawayEditor->getPiece(
         'title'       => inject('title'),
         'description' => inject('description'),
         'keywords'    => inject('keywords'),
-        'header'      => ob_get_clean()
+        'header'      => ob_get_clean(),
     ],
     $this->view->getNamespace(),
     $this->view->getName()
