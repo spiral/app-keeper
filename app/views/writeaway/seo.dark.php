@@ -8,7 +8,7 @@ ${context}
 <?php
 $pieceData = $writeawayEditor->getPiece(
     'seo',
-    inject('id'),
+    inject('id'), // TODO: Сдесь надо чтобы совпадало с идом ниже
     [
         'title'       => inject('title'),
         'description' => inject('description'),
@@ -23,9 +23,9 @@ echo $pieceData['header']
 @if($writeawayEditor->allows('seo', inject('id')))
     <script type="application/javascript">
         var SEO_META = {
-            id: "${id}",
-            namespace: "{{ $this->view->getNamespace() }}",
-            view: "{{ $this->view->getName() }}"
+            id: "${id}:" + {{ $this->view->getNamespace() }} + ":" + {{ $this->view->getName() }},
+            namespace: {{ $this->view->getNamespace() }},
+            view: {{ $this->view->getName() }}
         };
         var SEO_HEADER = "<?php echo $pieceData['header'] ?>"; // TODO: Тут надо заескейпить
     </script>
