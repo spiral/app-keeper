@@ -20,8 +20,8 @@ $pieceData = $writeawayEditor->getPiece(
     src="{{ $pieceData['src'] }}"
     alt="{{ $pieceData['alt'] }}"
     title="{{ $pieceData['title'] }}"
-    width="{{ $pieceData['width'] }}"
-    height="{{ $pieceData['height'] }}"
+    width="{{ $pieceData['width'] ?? '' }}"
+    height="{{ $pieceData['height'] ?? '' }}"
     class="${class}"
     @if($writeawayEditor->allows('image', inject('id')))
     data-id="${id}"
