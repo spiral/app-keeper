@@ -85,5 +85,9 @@ class SecurityBootloader extends Bootloader
         // writeaway
         $permissions->associate('admin', $writeawayConfig->editPermission(), AllowRule::class);
         $permissions->associate('super-admin', $writeawayConfig->editPermission(), AllowRule::class);
+
+        //forbidden
+        $permissions->associate('admin', 'keeper.users.forbidden', ForbidRule::class);
+        $permissions->associate('super-admin', 'keeper.users.forbidden', ForbidRule::class);
     }
 }

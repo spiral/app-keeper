@@ -147,4 +147,12 @@ class UserController
     {
         return $this->users->select();
     }
+
+    /**
+     * @Keeper\Action(route="/forbidden")
+     * @Keeper\Sitemap\Link(title="Forbidden")
+     */
+    public function forbidden(): void
+    {
+    }
 }
