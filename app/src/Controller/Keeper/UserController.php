@@ -25,7 +25,7 @@ use Spiral\Keeper\Module\RouteRegistry;
 use Spiral\Prototype\Traits\PrototypeTrait;
 
 /**
- * @Keeper\Controller(name="users")
+ * @Keeper\Controller(name="users", prefix="users")
  * @Keeper\Sitemap\Group(name="users", title="User Management", options={"icon": "users"})
  */
 class UserController

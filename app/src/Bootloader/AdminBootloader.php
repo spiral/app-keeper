@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace App\Bootloader;
 
+use App\Controller\Keeper\DashboardController;
 use Spiral\DataGrid\Interceptor\GridInterceptor;
 use Spiral\Domain\CycleInterceptor;
 use Spiral\Domain\FilterInterceptor;
@@ -21,7 +22,8 @@ use Spiral\Keeper\Middleware\LoginMiddleware;
 
 class AdminBootloader extends KeeperBootloader
 {
-    protected const LOAD = [
+    protected const DEFAULT_CONTROLLER = DashboardController::class;
+    protected const LOAD               = [
         Keeper\UIBootloader::class,
         Keeper\SitemapBootloader::class,
         Keeper\AnnotatedBootloader::class,

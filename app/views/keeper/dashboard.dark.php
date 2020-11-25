@@ -15,7 +15,7 @@
     <ui:col.9>
       <ui:panel header="Welcome to Keeper">
         <p>Welcome to Keeper panel.</p>
-        <p>Check the elements showcase <a href="@action('dashboard.showcase')">here</a>.</p>
+        <p>Check the elements showcase <a href="@action('showcase.index')">here</a>.</p>
       </ui:panel>
     </ui:col.9>
   </ui:row>

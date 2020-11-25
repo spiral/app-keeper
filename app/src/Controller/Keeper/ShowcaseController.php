@@ -25,7 +25,7 @@ use Spiral\Keeper\Module\RouteRegistry;
 use Spiral\Prototype\Traits\PrototypeTrait;
 
 /**
- * @Keeper\Controller(name="showcase")
+ * @Keeper\Controller(name="showcase", prefix="/showcase")
  * @Keeper\Sitemap\Group(name="showcase", title="Showcase", options={"icon": "cog"})
  */
 class ShowcaseController
