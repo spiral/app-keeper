@@ -6,3 +6,5 @@ bash:
 logs:
 	docker logs keeper --tail=10 -f
 
+migrate:
+	php app.php migrate:init && php app.php migrate
