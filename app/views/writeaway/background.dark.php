@@ -18,7 +18,7 @@ $pieceData = $writeawayEditor->getPiece(
 <div
     title="${title}"
     class="${class}"
-    style="background-image: url('{{ $pieceData['src'] }}'); background-color: {{ $pieceData['bgColor'] }}; background-repeat: {{ $pieceData['bgRepeat'] }}; background-size: {{ $pieceData['bgSize'] }}; background-position: {{ $pieceData['bgPosition'] }};"
+    style="background-image: url('{{ $pieceData['src'] ?? '' }}'); background-color: {{ $pieceData['bgColor'] ?? 'inherit' }}; background-repeat: {{ $pieceData['bgRepeat'] ?? 'inherit' }}; background-size: {{ $pieceData['bgSize'] ?? 'inherit' }}; background-position: {{ $pieceData['bgPosition'] ?? 'inherit' }};"
     @if($writeawayEditor->allows('background', inject('id')))
     data-id="${id}"
     data-piece="background"
