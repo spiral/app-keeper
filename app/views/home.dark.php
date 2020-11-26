@@ -1,6 +1,6 @@
 <extends:layout.base title="[[Welcome To Spiral]]"/>
 <use:element path="embed/links" as="homepage:links"/>
-<use:bundle path="writeaway/bundle"/>
+<use:bundle path="writeaway:bundle"/>
 
 <stack:push name="styles">
     @if(!env('FRONT_END_PUBLIC_URL'))

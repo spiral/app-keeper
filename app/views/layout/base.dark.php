@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="@{locale}">
-<use:bundle path="writeaway/bundle"/>
+<use:bundle path="writeaway:bundle"/>
 
 <head>
     <define:seo>

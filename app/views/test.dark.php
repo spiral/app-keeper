@@ -1,6 +1,6 @@
 <extends:layout.base title="[[Welcome To Spiral]]"/>
 <use:element path="embed/links" as="homepage:links"/>
-<use:bundle path="writeaway/bundle"/>
+<use:bundle path="writeaway:bundle"/>
 
 <define:seo>
     <writeaway:seo title="${title}" description="${description}" keywords="${keywords}" id="test-seo">
