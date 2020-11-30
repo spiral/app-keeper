@@ -52,7 +52,7 @@ class HomeController
      * Fetches notifications for notification drawer
      * Only include here recent notifications
      * Implement datagrid for complete list if needed
-     * @Route(route="/notifications", methods="GET")
+     * @Route(route="/notifications", methods="GET", name="notifications")
      */
     public function notifications(): array
     {
