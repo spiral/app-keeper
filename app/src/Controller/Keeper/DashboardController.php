@@ -23,7 +23,7 @@ class DashboardController
 
     /**
      * @Keeper\Action(route="", methods="GET")
-     * @Keeper\Sitemap\Link(title="Dashboard", parent="root", options={"icon": "home"})
+     * @Keeper\Sitemap\Link(title="Dashboard", parent="root", options={"icon": "home"}, position=1.0)
      */
     public function index()
     {
