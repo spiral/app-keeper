@@ -15,14 +15,14 @@ use Spiral\Keeper\Annotation as Keeper;
 use Spiral\Prototype\Traits\PrototypeTrait;
 
 /**
- * @Keeper\Controller(name="dashboard", prefix="")
+ * @Keeper\Controller(name="dashboard", prefix="", defaultAction="index")
  */
 class DashboardController
 {
     use PrototypeTrait;
 
     /**
-     * @Keeper\Action(route="/", methods="GET")
+     * @Keeper\Action(route="", methods="GET")
      * @Keeper\Sitemap\Link(title="Dashboard", parent="root", options={"icon": "home"})
      */
     public function index()
