@@ -40,7 +40,7 @@
 
     <define:heading>
       <div class="sf-heading">
-        <keeper:breadcrumps activeRoute="${activeRoute}"/>
+        <keeper:breadcrumbs activeRoute="${activeRoute}"/>
         <h1>
           <block:title>{{$_ln_->getOption('title')}}</block:title>
         </h1>
