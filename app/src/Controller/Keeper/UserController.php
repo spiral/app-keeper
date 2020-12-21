@@ -26,7 +26,7 @@ use Spiral\Prototype\Traits\PrototypeTrait;
 
 /**
  * @Keeper\Controller(name="users", prefix="/users")
- * @Keeper\Sitemap\Group(name="users", title="User Management", options={"icon": "users"})
+ * @Keeper\Sitemap\Group(name="users", title="User Management", options={"icon": "users"}, position=2.0)
  */
 class UserController
 {

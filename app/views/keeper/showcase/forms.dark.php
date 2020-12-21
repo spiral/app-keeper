@@ -7,7 +7,7 @@
 </ui:action>
 
 <ui:action>
-    <action:button icon="file" kind="primary" href="https://github.com/spiral/app-keeper/blob/master/app/views/showcase/forms.dark.php"
+    <action:button icon="file" kind="primary" href="https://github.com/spiral/app-keeper/blob/master/app/views/keeper/showcase/forms.dark.php"
                    target="_blank" label="Source Code"/>
 </ui:action>
 
