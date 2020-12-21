@@ -26,7 +26,7 @@
         "spiral/framework": "^2.7",
         "spiral/helpers": "^1.0",
         "spiral/jobs": "^2.0",
-        "spiral/keeper": "^0.7.1",
+        "spiral/keeper": "^0.7.2",
         "spiral/migrations": "^2.0",
         "spiral/monolog-bridge": "^1.0",
         "spiral/nyholm-bridge": "^1.0",
