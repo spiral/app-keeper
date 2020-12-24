@@ -22,6 +22,7 @@ use Spiral\Prototype\Bootloader as Prototype;
 use Spiral\Router\Bootloader as Router;
 use Spiral\Scaffolder\Bootloader as Scaffolder;
 use Spiral\Stempler\Bootloader as Stempler;
+use Spiral\Writeaway\Bootloader as Writeaway;
 
 class App extends Kernel
 {
@@ -54,12 +55,16 @@ class App extends Kernel
         Framework\Http\SessionBootloader::class,
         Framework\Http\CsrfBootloader::class,
         Framework\Http\PaginationBootloader::class,
+        Framework\Http\RouterBootloader::class,
         Framework\Http\JsonPayloadsBootloader::class,
 
         /* -- ORM and databases --*/
         Framework\Database\DatabaseBootloader::class,
         Framework\Database\MigrationsBootloader::class,
         Framework\Cycle\CycleBootloader::class,
+        Writeaway\WriteawayBootloader::class,
+        Writeaway\WriteawayCommandBootloader::class,
+        Writeaway\WriteawayViewsBootloader::class,
         Framework\Cycle\ProxiesBootloader::class,
         Framework\Cycle\AnnotatedBootloader::class,
 
@@ -93,5 +98,8 @@ class App extends Kernel
         Framework\CommandBootloader::class,
         Prototype\PrototypeBootloader::class,
         Scaffolder\ScaffolderBootloader::class,
+
+        //App
+        Bootloader\AppBootloader::class,
     ];
 }

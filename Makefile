@@ -1,5 +1,10 @@
+uplocal:
+	docker-compose -f docker-compose.yml -f docker-compose-local.yml -f docker-compose-custom-front-local.yml up -d
+
 bash:
 	docker-compose exec php bash
+logs:
+	docker logs keeper --tail=50 -f
 
-up:
-	docker-compose -f docker-compose.yml -f docker-compose-local.yml up -d
+migrate:
+	php app.php migrate:init && php app.php migrate

@@ -28,6 +28,14 @@ class HomeController
     }
 
     /**
+     * @Route(route="/test", name="test", methods="GET")
+     */
+    public function test()
+    {
+        return $this->views->render('test');
+    }
+
+    /**
      * @Route(route="/exception.html", name="exception", methods="GET")
      */
     public function exception(): void
@@ -57,16 +65,16 @@ class HomeController
     public function notifications(): array
     {
         return [
-            'status' => 200,
+            'status'      => 200,
             'unreadCount' => 0,
-            'data' => [
+            'data'        => [
                 [
                     'title' => 'Hello!',
-                    'body' => 'Real time notifications are now supported. Click <a href="https://github.com/spiral/toolkit/tree/master/packages/notifications">here</a> to read documentation',
-                    'read' => false,
-                    'icon' => 'download',
-                    'date' => 1597828433980,
-                    'id' => '1',
+                    'body'  => 'Real time notifications are now supported. Click <a href="https://github.com/spiral/toolkit/tree/master/packages/notifications">here</a> to read documentation',
+                    'read'  => false,
+                    'icon'  => 'download',
+                    'date'  => 1597828433980,
+                    'id'    => '1',
                 ],
             ],
         ];

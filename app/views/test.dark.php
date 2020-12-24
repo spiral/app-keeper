@@ -2,6 +2,24 @@
 <use:element path="embed/links" as="homepage:links"/>
 <use:bundle path="writeaway:bundle"/>
 
+<define:seo>
+    <writeaway:seo title="${title}" description="${description}" keywords="${keywords}" id="test-seo">
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="${title}">
+        <meta property="og:description" content="${description}">
+        <meta property="og:image"
+              content="https://metatags.io/assets/meta-tags-16a33a6a8531e519cc0936fbba0ad904e52d35f34a46c97a2c9f6f7dd7d336f2.png">
+
+        <!-- Twitter -->
+        <meta property="twitter:card" content="summary_large_image">
+        <meta property="twitter:title" content="${title}">
+        <meta property="twitter:description" content="${description}">
+        <meta property="twitter:image"
+              content="https://metatags.io/assets/meta-tags-16a33a6a8531e519cc0936fbba0ad904e52d35f34a46c97a2c9f6f7dd7d336f2.png">
+    </writeaway:seo>
+</define:seo>
+
 <stack:push name="styles">
     @if(!env('FRONT_END_PUBLIC_URL'))
         <link rel="stylesheet" href="/generated/css/client.css"/>

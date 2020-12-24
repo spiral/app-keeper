@@ -15,7 +15,7 @@ RUN apk update \
         openssl-dev \
         wget \
         libmcrypt-dev \
-        libpng-dev \
+        freetype-dev libpng-dev libjpeg-turbo-dev libxml2-dev autoconf g++ imagemagick-dev imagemagick libtool make \
         icu-dev \
         libxslt-dev \
         zip \
@@ -31,6 +31,7 @@ RUN apk update \
 RUN docker-php-ext-install \
         mbstring opcache iconv pdo \
         gd dom exif intl json soap tokenizer xsl zip pcntl bcmath sockets \
+        && pecl install -o -f redis imagick &&  rm -rf /tmp/pear &&  docker-php-ext-enable redis imagick \
         && docker-php-source delete \
         && apk del ${BUILD_DEPENDS}
 
