@@ -23,6 +23,7 @@ use Spiral\Keeper\Middleware\LoginMiddleware;
 class AdminBootloader extends KeeperBootloader
 {
     protected const DEFAULT_CONTROLLER = DashboardController::class;
+    protected const PREFIX             = '/keeper';
     protected const LOAD               = [
         Keeper\UIBootloader::class,
         Keeper\SitemapBootloader::class,

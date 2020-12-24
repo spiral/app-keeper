@@ -23,17 +23,15 @@
         "cycle/proxy-factory": "^1.0",
         "fzaninotto/faker": "^1.9",
         "spiral/database": "^2.3",
-        "spiral/dotenv-bridge": "^1.0",
         "spiral/framework": "^2.7",
         "spiral/helpers": "^1.0",
         "spiral/jobs": "^2.0",
-        "spiral/keeper": "dev-proposal",
+        "spiral/keeper": "^0.8",
         "spiral/migrations": "^2.0",
-        "spiral/monolog-bridge": "^1.0",
         "spiral/nyholm-bridge": "^1.0",
         "spiral/roadrunner": "^1.4",
         "spiral/toolkit": "^v1.1",
-        "spiral/writeaway": "dev-master"
+        "spiral/writeaway": "^0.3"
     },
     "require-dev": {
         "roave/security-advisories": "dev-master",
@@ -61,8 +59,8 @@
         "publish-cmd": "php app.php publish"
     },
     "config": {
-        "bin-dir": "bin",
-        "sort-packages": true
+        "sort-packages": true,
+        "bin-dir": "bin"
     },
     "minimum-stability": "dev",
     "prefer-stable": true

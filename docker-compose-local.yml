@@ -1,9 +1,12 @@
-version: "3.8"
+version: "3.7"
 
 services:
   php:
     volumes:
-      - ./:/var/www
+      - ./app:/var/www/app
+      - ./runtime:/var/www/runtime
+      - ./composer.json:/var/www/composer.json
+      - ./.env:/var/www/.env
     env_file:
       - .env
     command: "/var/server/spiral serve -v -d -o http.workers.pool.numWorkers=1 -o http.workers.pool.maxJobs=1"

@@ -2,8 +2,9 @@ http:
   address: 0.0.0.0:8080
   workers:
     command: "php app.php"
-    pool.numWorkers: 1
-    pool.maxJobs: 1
+    pool:
+        maxJobs: 1
+        numWorkers: 1
 
 static:
   dir:    "public"

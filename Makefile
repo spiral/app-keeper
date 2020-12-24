@@ -4,7 +4,7 @@ uplocal:
 bash:
 	docker-compose exec php bash
 logs:
-	docker logs keeper --tail=10 -f
+	docker logs keeper --tail=50 -f
 
 migrate:
 	php app.php migrate:init && php app.php migrate
