@@ -22,13 +22,11 @@
         "cycle/proxy-factory": "^1.0",
         "fzaninotto/faker": "^1.9",
         "spiral/database": "^2.3",
-        "spiral/dotenv-bridge": "^1.0",
         "spiral/framework": "^2.7",
         "spiral/helpers": "^1.0",
         "spiral/jobs": "^2.0",
         "spiral/keeper": "^0.7.2",
         "spiral/migrations": "^2.0",
-        "spiral/monolog-bridge": "^1.0",
         "spiral/nyholm-bridge": "^1.0",
         "spiral/roadrunner": "^1.4",
         "spiral/toolkit": "^v1.1"
