@@ -33,9 +33,19 @@
                     </form:label>
 
                     <form:select
+                        name="single"
                         label="Select Something"
                         values="{{ [1 => 'First', 2 => 'Second', 3 => 'Third'] }}"
                         value="2"
+                        placeholder="Select Value"
+                    />
+
+                    <form:select
+                        multiple
+                        name="multi[]"
+                        label="Select Something"
+                        values="{{ [1 => 'First', 2 => 'Second', 3 => 'Third'] }}"
+                        value="{{[1,2]}}"
                         placeholder="Select Value"
                     />
 
