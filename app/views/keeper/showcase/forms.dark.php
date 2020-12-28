@@ -24,7 +24,7 @@
                     <form:input name="email" label="Email" value="" required="true"/>
 
                     <form:input type="password" name="password" label="New Password" size="6" required="true"/>
-                    <form:input type="password" name="confirmPassword" label="Confirm Password" size="6"/>
+                    <form:password name="confirmPassword" label="Confirm Password" size="6" required="true"/>
 
                     <form:label label="User Roles" name="roles" required="true">
                         @foreach(['admin'=>'Admin', 'super-admin'=>'Super Admin'] as $role => $label)
