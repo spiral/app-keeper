@@ -25,14 +25,14 @@
   </ui:grid>
 </block:content>
 
-<stack:push name="scripts" unique-id="datagrid-roles-renderer">
-  <script type="text/javascript">
-      SFToolkit.tools._datagrid.register('roles', function () {
-          return function (roles) {
-              return roles.map(function (role) {
-                  return '<span class="badge badge-primary mr-1">' + role.toUpperCase() + '</span>'
-              }).join('');
-          }
-      });
-  </script>
+<stack:push name="datagridrenderers" unique-id="datagrid-roles-renderer">
+    <script type="text/javascript" role="sf-datagrid-renderer">
+        window.SFToolkit_tools_datagrid = window.SFToolkit_tools_datagrid || {}; window.SFToolkit_tools_datagrid['roles'] = function () {
+            return function (roles) {
+                return roles.map(function (role) {
+                    return '<span class="badge badge-primary mr-1">' + role.toUpperCase() + '</span>'
+                }).join('');
+            }
+        };
+    </script>
 </stack:push>

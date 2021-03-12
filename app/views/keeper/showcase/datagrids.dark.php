@@ -554,6 +554,286 @@
                     </code></pre>
             </ui:panel>
         </ui:col.12>
+        <ui:col.12>
+            <ui:panel header="Experimental Responsive Support">
+                <h4>Experimental Responsive Support</h4>
+                <p>Providing <code>responsive</code> option allows enabling experimental double rendering for collapsing table in a list with expandable items</p>
+                <div class="sf-table">
+                    <div class="js-sf-datagrid">
+                        @declare(syntax=off)
+                        <script type="text/javascript" role="sf-options">
+                            (function () {
+                                return {
+                                    "id": "custom2",
+                                    "url": "/keeper/users/list",
+                                    "namespace": "custom2",
+                                    "method": "GET",
+                                    "ui": {
+                                        "headerCellClassName": {"actions": "text-right"},
+                                        "cellClassName": {"actions": "text-right py-2", "created": "text-nowrap"}
+                                    },
+                                    "paginator": {"limitOptions": [10, 20, 50, 100]},
+                                    "sort": "created",
+                                    "columns": [{"id": "name", "title": "Name", "sortDir": "asc"}, {"id": "actions2", "title": " "}, {
+                                        "id": "email",
+                                        "title": "Email",
+                                        "sortDir": "asc"
+                                    }, {"id": "created", "title": "Created At", "sortDir": "desc"}, {
+                                        "id": "roles",
+                                        "title": "Roles",
+                                        "sortDir": null
+                                    }, {"id": "id", "title": "ID", "sortDir": null}, {"id": "actions", "title": " "}],
+                                    "selectable": {
+                                        "type": "multiple",
+                                        "id": "id"
+                                    },
+                                    "renderers": {
+                                        "cells": {
+                                            "name": {
+                                                "name": "link",
+                                                "arguments": {
+                                                    "title": "",
+                                                    "body": "{{firstName}}&nbsp;{{lastName}}",
+                                                    "href": "\/keeper\/users\/{{id}}"
+                                                }
+                                            },
+                                            "email": {"name": "link", "arguments": {"title": "", "body": "{{email}}", "href": "mailto:{{email}}"}},
+                                            "created": {"name": "dateFormat", "arguments": ["LLL dd, yyyy HH:mm"]},
+                                            "roles": {"name": "roles", "arguments": []},
+                                            "id": {"name": "template", "arguments": ["{{id}}"]},
+                                            "actions": {
+                                                "name": "actions",
+                                                "arguments": {
+                                                    "kind": "",
+                                                    "size": "sm",
+                                                    "className": "",
+                                                    "icon": "cog",
+                                                    "label": "Actions",
+                                                    "actions": [{
+                                                        "type": "href",
+                                                        "url": "\/keeper\/users\/{{id}}",
+                                                        "label": "Edit",
+                                                        "target": null,
+                                                        "icon": "edit",
+                                                        "template": ""
+                                                    }, {
+                                                        "type": "action",
+                                                        "url": "\/keeper\/users\/{{id}}",
+                                                        "method": "DELETE",
+                                                        "label": "Delete",
+                                                        "icon": "trash",
+                                                        "template": "<span class=\"text-danger\"><i class=\"fa fw fa-trash\"><\/i>&nbsp;&nbsp; Delete<\/span>",
+                                                        "condition": null,
+                                                        "data": [],
+                                                        "refresh": true,
+                                                        "confirm": {
+                                                            "body": "Are you sure to delete this entry?",
+                                                            "title": "Confirmation Required",
+                                                            "confirm": "Delete",
+                                                            "confirmKind": "danger",
+                                                            "cancel": "Cancel"
+                                                        },
+                                                        "toastSuccess": "<i class=\"fa fa-check-circle\"><\/i>&nbsp; {{message}}\n              ",
+                                                        "toastError": "<i class=\"fa fa-exclamation\"><\/i>&nbsp; {{error}}\n              "
+                                                    }]
+                                                }
+                                            },
+                                            "actions2": {
+                                                "name": "actions",
+                                                "arguments": {
+                                                    "kind": "",
+                                                    "size": "sm",
+                                                    "className": "",
+                                                    "icon": "cog",
+                                                    "label": "Actions 2",
+                                                    "actions": [{
+                                                        "type": "href",
+                                                        "url": "\/keeper\/users\/{{id}}",
+                                                        "label": "Edit",
+                                                        "target": null,
+                                                        "icon": "edit",
+                                                        "template": ""
+                                                    }, {
+                                                        "type": "action",
+                                                        "url": "\/keeper\/users\/{{id}}",
+                                                        "method": "DELETE",
+                                                        "label": "Delete",
+                                                        "icon": "trash",
+                                                        "template": "<span class=\"text-danger\"><i class=\"fa fw fa-trash\"><\/i>&nbsp;&nbsp; Delete<\/span>",
+                                                        "condition": null,
+                                                        "data": [],
+                                                        "refresh": true,
+                                                        "confirm": {
+                                                            "body": "Are you sure to delete this entry?",
+                                                            "title": "Confirmation Required",
+                                                            "confirm": "Delete",
+                                                            "confirmKind": "danger",
+                                                            "cancel": "Cancel"
+                                                        },
+                                                        "toastSuccess": "<i class=\"fa fa-check-circle\"><\/i>&nbsp; {{message}}\n              ",
+                                                        "toastError": "<i class=\"fa fa-exclamation\"><\/i>&nbsp; {{error}}\n              "
+                                                    }]
+                                                }
+                                            }
+                                        },
+                                        "actions": {
+                                            "delete": {
+                                                renderAs: "<div class='btn btn-danger'>Delete</div>",
+                                                onClick: function (state, grid) {
+                                                    console.log(state, grid);
+                                                }
+                                            }
+                                        }
+                                    }
+                                    "responsive": {
+                                        listSummaryColumn: "name",
+                                        tableClass: "table d-none d-md-table",
+                                        listClass: "d-md-block",
+                                    }
+                                };
+                            });
+                        </script>
+                        @declare(syntax=on)
+                    </div>
+                </div>
+
+                <pre><code class="language-markup">
+                        &lt;div class="sf-table"&gt;
+                    &lt;div class="js-sf-datagrid"&gt;
+                        @declare(syntax=off)
+                        &lt;script type="text/javascript" role="sf-options"&gt;
+                            (function () {
+                                return {
+                                    "id": "custom",
+                                    "url": "/keeper/users/list",
+                                    "namespace": "custom",
+                                    "method": "GET",
+                                    "ui": {
+                                        "headerCellClassName": {"actions": "text-right"},
+                                        "cellClassName": {"actions": "text-right py-2", "created": "text-nowrap"}
+                                    },
+                                    "paginator": {"limitOptions": [10, 20, 50, 100]},
+                                    "sort": "created",
+                                    "columns": [{"id": "name", "title": "Name", "sortDir": "asc"}, {"id": "actions2", "title": " "}, {
+                                        "id": "email",
+                                        "title": "Email",
+                                        "sortDir": "asc"
+                                    }, {"id": "created", "title": "Created At", "sortDir": "desc"}, {
+                                        "id": "roles",
+                                        "title": "Roles",
+                                        "sortDir": null
+                                    }, {"id": "id", "title": "ID", "sortDir": null}, {"id": "actions", "title": " "}],
+                                    "selectable": {
+                                        "type": "multiple",
+                                        "id": "id"
+                                    },
+                                    "renderers": {
+                                        "cells": {
+                                            "name": {
+                                                "name": "link",
+                                                "arguments": {
+                                                    "title": "",
+                                                    "body": "{{firstName}}&nbsp;{{lastName}}",
+                                                    "href": "\/keeper\/users\/{{id}}"
+                                                }
+                                            },
+                                            "email": {"name": "link", "arguments": {"title": "", "body": "{{email}}", "href": "mailto:{{email}}"}},
+                                            "created": {"name": "dateFormat", "arguments": ["LLL dd, yyyy HH:mm"]},
+                                            "roles": {"name": "roles", "arguments": []},
+                                            "id": {"name": "template", "arguments": ["{{id}}"]},
+                                            "actions": {
+                                                "name": "actions",
+                                                "arguments": {
+                                                    "kind": "",
+                                                    "size": "sm",
+                                                    "className": "",
+                                                    "icon": "cog",
+                                                    "label": "Actions",
+                                                    "actions": [{
+                                                        "type": "href",
+                                                        "url": "\/keeper\/users\/{{id}}",
+                                                        "label": "Edit",
+                                                        "target": null,
+                                                        "icon": "edit",
+                                                        "template": ""
+                                                    }, {
+                                                        "type": "action",
+                                                        "url": "\/keeper\/users\/{{id}}",
+                                                        "method": "DELETE",
+                                                        "label": "Delete",
+                                                        "icon": "trash",
+                                                        "template": "&lt;span class=\"text-danger\"&gt;&lt;i class=\"fa fw fa-trash\"&gt;&lt;\/i&gt;&nbsp;&nbsp; Delete&lt;\/span&gt;",
+                                                        "condition": null,
+                                                        "data": [],
+                                                        "refresh": true,
+                                                        "confirm": {
+                                                            "body": "Are you sure to delete this entry?",
+                                                            "title": "Confirmation Required",
+                                                            "confirm": "Delete",
+                                                            "confirmKind": "danger",
+                                                            "cancel": "Cancel"
+                                                        },
+                                                        "toastSuccess": "&lt;i class=\"fa fa-check-circle\"&gt;&lt;\/i&gt;&nbsp; {{message}}\n              ",
+                                                        "toastError": "&lt;i class=\"fa fa-exclamation\"&gt;&lt;\/i&gt;&nbsp; {{error}}\n              "
+                                                    }]
+                                                }
+                                            },
+                                            "actions2": {
+                                                "name": "actions",
+                                                "arguments": {
+                                                    "kind": "",
+                                                    "size": "sm",
+                                                    "className": "",
+                                                    "icon": "cog",
+                                                    "label": "Actions 2",
+                                                    "actions": [{
+                                                        "type": "href",
+                                                        "url": "\/keeper\/users\/{{id}}",
+                                                        "label": "Edit",
+                                                        "target": null,
+                                                        "icon": "edit",
+                                                        "template": ""
+                                                    }, {
+                                                        "type": "action",
+                                                        "url": "\/keeper\/users\/{{id}}",
+                                                        "method": "DELETE",
+                                                        "label": "Delete",
+                                                        "icon": "trash",
+                                                        "template": "&lt;span class=\"text-danger\"&gt;&lt;i class=\"fa fw fa-trash\"&gt;&lt;\/i&gt;&nbsp;&nbsp; Delete&lt;\/span&gt;",
+                                                        "condition": null,
+                                                        "data": [],
+                                                        "refresh": true,
+                                                        "confirm": {
+                                                            "body": "Are you sure to delete this entry?",
+                                                            "title": "Confirmation Required",
+                                                            "confirm": "Delete",
+                                                            "confirmKind": "danger",
+                                                            "cancel": "Cancel"
+                                                        },
+                                                        "toastSuccess": "&lt;i class=\"fa fa-check-circle\"&gt;&lt;\/i&gt;&nbsp; {{message}}\n              ",
+                                                        "toastError": "&lt;i class=\"fa fa-exclamation\"&gt;&lt;\/i&gt;&nbsp; {{error}}\n              "
+                                                    }]
+                                                }
+                                            }
+                                        },
+                                        "actions": {
+                                            "delete": {
+                                                renderAs: "&lt;div class='btn btn-danger'&gt;Delete&lt;/div&gt;",
+                                                onClick: function (state, grid) {
+                                                    console.log(state, grid);
+                                                }
+                                            }
+                                        }
+                                    }
+                                };
+                            });
+                        &lt;/script&gt;
+                        @declare(syntax=on)
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                    </code></pre>
+            </ui:panel>
+        </ui:col.12>
 
     </ui:row>
 </define:content>
