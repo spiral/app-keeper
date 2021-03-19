@@ -28,7 +28,7 @@ class LogoutRequest extends Filter
     ];
 
     /**
-     * @return bool
+     * @return string
      */
     public function getToken(): string
     {
