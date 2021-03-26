@@ -35,8 +35,12 @@ class LoginRequest extends Filter
         'code'     => 'strval',
         'remember' => 'boolval',
     ];
-    private const DEFAULT_DURATION  = 'PT24H';
-    private const REMEMBER_DURATION = 'PT30D';
+
+    /**
+     * @see https://en.wikipedia.org/wiki/ISO_8601#Durations
+     */
+    private const DEFAULT_DURATION  = 'P1D';
+    private const REMEMBER_DURATION = 'P1M';
 
     /**
      * @return string
