@@ -1,19 +1,11 @@
 <?php
 
-/**
- * This file is part of Spiral package.
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 declare(strict_types=1);
 
 namespace App;
 
 use App\Bootloader;
 use Spiral\Bootloader as Framework;
-use Spiral\DataGrid\Bootloader as DataGrid;
 use Spiral\DotEnv\Bootloader as DotEnv;
 use Spiral\Framework\Kernel;
 use Spiral\Monolog\Bootloader as Monolog;
@@ -23,6 +15,8 @@ use Spiral\Router\Bootloader as Router;
 use Spiral\Scaffolder\Bootloader as Scaffolder;
 use Spiral\Stempler\Bootloader as Stempler;
 use Spiral\Writeaway\Bootloader as Writeaway;
+use Spiral\Cycle\Bootloader as CycleBridge;
+use Spiral\RoadRunnerBridge\Bootloader as RoadRunnerBridge;
 
 class App extends Kernel
 {
@@ -31,6 +25,11 @@ class App extends Kernel
      * within system container on application start.
      */
     protected const LOAD = [
+        /** -- roadrunner -- */
+        RoadRunnerBridge\HttpBootloader::class,
+        RoadRunnerBridge\QueueBootloader::class,
+        RoadRunnerBridge\CommandBootloader::class,
+
         /* -- debug and profiling --*/
         DotEnv\DotenvBootloader::class,
         Monolog\MonologBootloader::class,
@@ -59,14 +58,16 @@ class App extends Kernel
         Framework\Http\JsonPayloadsBootloader::class,
 
         /* -- ORM and databases --*/
-        Framework\Database\DatabaseBootloader::class,
-        Framework\Database\MigrationsBootloader::class,
-        Framework\Cycle\CycleBootloader::class,
+        CycleBridge\DatabaseBootloader::class,
+        CycleBridge\MigrationsBootloader::class,
+        CycleBridge\DisconnectsBootloader::class,
+        CycleBridge\SchemaBootloader::class,
+        CycleBridge\CycleOrmBootloader::class,
+        CycleBridge\AnnotatedBootloader::class,
+        CycleBridge\CommandBootloader::class,
         Writeaway\WriteawayBootloader::class,
         Writeaway\WriteawayCommandBootloader::class,
         Writeaway\WriteawayViewsBootloader::class,
-        Framework\Cycle\ProxiesBootloader::class,
-        Framework\Cycle\AnnotatedBootloader::class,
 
         /* -- stempler and views --*/
         Framework\Views\ViewsBootloader::class,
@@ -76,15 +77,16 @@ class App extends Kernel
 
         /* -- security and auth context --*/
         Framework\Auth\HttpAuthBootloader::class,
-        Framework\Auth\TokenStorage\CycleTokensBootloader::class,
+        CycleBridge\AuthTokensBootloader::class,
         Framework\Auth\SecurityActorBootloader::class,
 
         /* -- other components --*/
         Framework\I18nBootloader::class,
-        Framework\Jobs\JobsBootloader::class,
+        Framework\Storage\StorageBootloader::class,
+        Framework\Distribution\DistributionBootloader::class,
 
         /* -- data rendering --*/
-        DataGrid\GridBootloader::class,
+        CycleBridge\DataGridBootloader::class,
 
         /* -- routes and middleware -- */
         Router\AnnotatedRoutesBootloader::class,

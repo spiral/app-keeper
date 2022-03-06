@@ -1,21 +1,14 @@
 <?php
 
-/**
- * This file is part of Spiral package.
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 declare(strict_types=1);
 
 namespace App\View;
 
 use App\Database\User;
 use Spiral\DataGrid\GridSchema;
-use Spiral\DataGrid\Specification\Filter as Filter;
+use Spiral\DataGrid\Specification\Filter;
 use Spiral\DataGrid\Specification\Pagination\PagePaginator;
-use Spiral\DataGrid\Specification\Sorter as Sorter;
+use Spiral\DataGrid\Specification\Sorter;
 use Spiral\DataGrid\Specification\Value;
 
 class UserGrid extends GridSchema
@@ -43,15 +36,11 @@ class UserGrid extends GridSchema
         $this->setPaginator(new PagePaginator(20, [10, 20, 50, 100]));
     }
 
-    /**
-     * @param User $user
-     * @return array
-     */
     public function __invoke(User $user): array
     {
         return [
             'id'        => $user->id,
-            'created'   => $user->getCreatedAt()->format(DATE_ATOM),
+            'created'   => $user->getCreatedAt()?->format(DATE_ATOM),
             'firstName' => $user->firstName,
             'lastName'  => $user->lastName,
             'email'     => $user->email,
@@ -59,9 +48,6 @@ class UserGrid extends GridSchema
         ];
     }
 
-    /**
-     * @return array
-     */
     public function getDefaults(): array
     {
         return ['sort' => ['created' => 'desc']];

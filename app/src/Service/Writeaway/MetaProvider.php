@@ -12,15 +12,10 @@ use Spiral\Writeaway\Service\NullMetaProvider;
 
 class MetaProvider implements MetaProviderInterface
 {
-    /** @var ActorInterface */
-    private $actor;
-    /** @var NullMetaProvider */
-    private $null;
-
-    public function __construct(ActorInterface $actor, NullMetaProvider $null)
-    {
-        $this->actor = $actor;
-        $this->null = $null;
+    public function __construct(
+        private ActorInterface $actor,
+        private NullMetaProvider $null
+    ) {
     }
 
     public function provide(): Meta

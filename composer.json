@@ -15,34 +15,28 @@
         }
     ],
     "require": {
-        "php": ">=7.2",
+        "php": ">=8.0",
         "ext-json": "*",
-        "cycle/annotated": "^2.0",
-        "cycle/migrations": "^1.0",
-        "cycle/orm": "^1.0",
-        "cycle/proxy-factory": "^1.0",
+        "spiral/cycle-bridge": "^1.0",
         "fzaninotto/faker": "^1.9",
-        "spiral/database": "^2.3",
-        "spiral/framework": "^2.8",
+        "spiral/framework": "^2.9",
         "spiral/helpers": "^1.0",
-        "spiral/jobs": "^2.0",
         "spiral/keeper": "^0.8",
-        "spiral/migrations": "^2.0",
         "spiral/nyholm-bridge": "^1.0",
-        "spiral/roadrunner": "^1.4",
+        "spiral/roadrunner-bridge": "^1.0",
         "spiral/toolkit": "^v1.1",
         "spiral/writeaway": "^0.3"
     },
     "require-dev": {
         "roave/security-advisories": "dev-master",
-        "phpunit/phpunit": "^8.5|^9.0"
+        "phpunit/phpunit": "^9.5"
     },
     "scripts": {
         "post-create-project-cmd": [
             "php -r \"copy('.env.sample', '.env');\"",
             "php app.php encrypt:key -m .env",
             "php app.php configure -vv",
-            "spiral get-binary"
+            "rr get-binary"
         ]
     },
     "autoload": {
