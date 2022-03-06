@@ -13,7 +13,6 @@ return [
      * multiple resolvers at the same time using the distribution library.
      *
      */
-
     'default' => 'local',
 
     /**
@@ -26,11 +25,10 @@ return [
      * by Spiral are shown below to simplify development.
      *
      */
-
     'resolvers' => [
         'local' => [
             'type' => 'static',
-            'uri'  => env('APP_URL', 'http://localhost') . '/uploads'
+            'uri'  => env('APP_URL', 'http://localhost') . '/uploads',
         ],
     ],
 ];
