@@ -6,7 +6,7 @@ return [
     'servers' => [
         'local' => [
             'adapter' => 'local',
-            'directory' => \dirname(__DIR__, 2) . '/public/uploads',
+            'directory' => directory('public') . 'uploads',
         ],
     ],
 
