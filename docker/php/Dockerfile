@@ -29,7 +29,7 @@ RUN apk update \
     && rm -rf /var/lib/apt/lists/*
 
 RUN docker-php-ext-install \
-        mbstring opcache iconv pdo \
+        mbstring opcache pdo \
         gd dom exif intl json soap tokenizer xsl zip pcntl bcmath sockets \
         && pecl install -o -f redis imagick &&  rm -rf /tmp/pear &&  docker-php-ext-enable redis imagick \
         && docker-php-source delete \
