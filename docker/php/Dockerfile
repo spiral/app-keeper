@@ -1,4 +1,4 @@
-FROM php:7.4-cli-alpine
+FROM php:7.4-cli-alpine3.13
 
 RUN apk update \
     && apk add --no-cache  \
@@ -51,7 +51,6 @@ RUN EXPECTED_COMPOSER_SIGNATURE=$(wget -q -O - https://composer.github.io/instal
        composer --ansi --version --no-interaction && \
        composer global require hirak/prestissimo && \
        composer clear-cache
-
 
 WORKDIR /var/www
 
