@@ -20,7 +20,7 @@ return [
      */
     'databases' => [
         'default' => [
-            'driver' => 'sqlite',
+            'driver' => 'mysql',
         ],
     ],
 
@@ -31,11 +31,11 @@ return [
      * the driver class and its connection options.
      */
     'drivers'   => [
-        'sqlite' => new Config\MySQLDriverConfig(
+        'mysql' => new Config\MySQLDriverConfig(
             connection: new Config\MySQL\TcpConnectionConfig(
                 database: 'keeper',
-                host: 'localhost',
-                port: 3394,
+                host: 'db',
+                port: 3306,
                 user: 'keeper',
                 password: 'root',
             ),

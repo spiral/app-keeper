@@ -21,11 +21,11 @@
         "fzaninotto/faker": "^1.9",
         "spiral/framework": "^2.9",
         "spiral/helpers": "^1.0",
-        "spiral/keeper": "^0.8",
+        "spiral/keeper": "^0.9",
         "spiral/nyholm-bridge": "^1.0",
         "spiral/roadrunner-bridge": "^1.0",
         "spiral/toolkit": "^v1.1",
-        "spiral/writeaway": "^0.3"
+        "spiral/writeaway": "^0.4"
     },
     "require-dev": {
         "roave/security-advisories": "dev-master",
