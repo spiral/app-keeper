@@ -1,4 +1,10 @@
-FROM php:7.4-cli-alpine3.13
+ARG PHP_IMAGE=8.1.3-cli-alpine3.15
+ARG ROAD_RUNNER_IMAGE=2.8.2
+
+#Download rr binary
+FROM spiralscout/roadrunner:$ROAD_RUNNER_IMAGE as builder
+
+FROM php:$PHP_IMAGE
 
 RUN apk update \
     && apk add --no-cache  \
@@ -29,42 +35,28 @@ RUN apk update \
     && rm -rf /var/lib/apt/lists/*
 
 RUN docker-php-ext-install \
-        mbstring opcache iconv pdo \
-        gd dom exif intl json soap tokenizer xsl zip pcntl bcmath sockets \
-        && pecl install -o -f redis imagick &&  rm -rf /tmp/pear &&  docker-php-ext-enable redis imagick \
-        && docker-php-source delete \
-        && apk del ${BUILD_DEPENDS}
+    opcache soap xsl zip pcntl bcmath sockets pdo_mysql \
+    && pecl install -o -f redis imagick &&  rm -rf /tmp/pear &&  docker-php-ext-enable redis imagick \
+    && docker-php-source delete \
+    && apk del ${BUILD_DEPENDS}
 
-ENV PATH "/composer/vendor/bin:$PATH"
-ENV COMPOSER_ALLOW_SUPERUSER 1
-ENV COMPOSER_HOME /composer
-ENV COMPOSER_VERSION 1.10.16
-ENV COMPOSER_MEMORY_LIMIT=1G
-ENV TZ=Europe/Minsk
-
-RUN EXPECTED_COMPOSER_SIGNATURE=$(wget -q -O - https://composer.github.io/installer.sig) \
-	&& php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
-	&& php -r "if (hash_file('SHA384', 'composer-setup.php') === '${EXPECTED_COMPOSER_SIGNATURE}') { echo 'Composer.phar Installer verified'; } else { echo 'Composer.phar Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;" \
-	&& php composer-setup.php --no-ansi --install-dir=/usr/bin --filename=composer --version=${COMPOSER_VERSION} \
-	&& php -r "unlink('composer-setup.php');" \
-    && composer config --global repo.packagist composer https://packagist.org && \
-       composer --ansi --version --no-interaction && \
-       composer global require hirak/prestissimo && \
-       composer clear-cache
+COPY --from=composer:2.2.7 /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www
 
 COPY ./composer.json /var/www
 
-RUN composer install --no-autoloader --no-suggest --no-scripts && \
-        composer clear-cache && \
-        composer dump --optimize --no-scripts
+RUN composer install --no-autoloader --no-scripts && \
+    composer clear-cache && \
+    composer dump --optimize --no-scripts
 
 COPY ./ /var/www
 
 RUN composer run-script post-create-project-cmd
-RUN mkdir /var/server
-RUN mv spiral /var/server
-RUN ln -s /var/www/.rr.yml /var/server/.rr.yml
 
-ENTRYPOINT ["/var/server/spiral", "serve", "-v", "-d"]
+COPY --from=builder /usr/bin/rr /var/server/
+COPY ./.rr.yaml /var/server/
+COPY ./wait-for-it.sh /var/server/
+RUN ["chmod", "+x", "/var/server/wait-for-it.sh"]
+
+CMD ["/var/server/rr", "serve", "-d"]

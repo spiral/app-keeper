@@ -1,61 +1,38 @@
 <?php
 
-/**
- * This file is part of Spiral package.
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 declare(strict_types=1);
 
 namespace App\Service;
 
 use App\Service\Exception\PersistException;
-use Cycle\ORM\TransactionInterface;
+use Cycle\ORM\EntityManagerInterface;
 use Spiral\Prototype\Annotation\Prototyped;
 
-/**
- * @Prototyped(property="entities")
- */
+#[Prototyped(property: 'entities')]
 class EntityService
 {
-    /** @var TransactionInterface */
-    private $transaction;
-
-    /**
-     * @param TransactionInterface $transaction
-     */
-    public function __construct(TransactionInterface $transaction)
-    {
-        $this->transaction = $transaction;
+    public function __construct(
+        private EntityManagerInterface $entityManager
+    ) {
     }
 
-    /**
-     * @param object $entity
-     * @throws PersistException
-     */
-    public function save($entity): void
+    public function save(object $entity): void
     {
-        $this->transaction->persist($entity);
+        $this->entityManager->persist($entity);
 
         try {
-            $this->transaction->run();
+            $this->entityManager->run();
         } catch (\Throwable $e) {
             throw new PersistException('Unable to persist entity', $e->getCode(), $e);
         }
     }
 
-    /**
-     * @param object $entity
-     * @throws PersistException
-     */
-    public function delete($entity): void
+    public function delete(object $entity): void
     {
-        $this->transaction->delete($entity);
+        $this->entityManager->delete($entity);
 
         try {
-            $this->transaction->run();
+            $this->entityManager->run();
         } catch (\Throwable $e) {
             throw new PersistException('Unable to persist entity', $e->getCode(), $e);
         }

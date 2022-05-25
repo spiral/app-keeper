@@ -7,6 +7,21 @@ services:
       dockerfile: docker/php/Dockerfile
       context: ./
     restart: always
+    depends_on:
+      - db
+  db:
+    image: mysql:8.0
+    ports:
+      - 3394:3306 # 3394 on host system
+    restart: on-failure
+    env_file:
+      - .env
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=keeper
+      - MYSQL_USER=keeper
+      - MYSQL_PASSWORD=root
+      - TZ=US/Eastern
 
   nginx:
     container_name: keeper-nginx

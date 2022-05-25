@@ -1,30 +1,21 @@
 <?php
 
-/**
- * This file is part of Spiral package.
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 declare(strict_types=1);
 
 namespace App\Job;
 
-use Spiral\Jobs\JobHandler;
+use Spiral\Queue\JobHandler;
+use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 /**
  * (QueueInterface)->push(PingJob::class, ["value"=>"my value"]);
  */
 class Ping extends JobHandler
 {
-    /**
-     * @param string $id
-     * @param string $value
-     */
-    public function invoke(string $id, string $value): void
+    public function invoke(HttpClientInterface $client, string $url): void
     {
         // do something
-        error_log("pong by {$id}, value `{$value}`");
+        $status = $client->request('GET', $url)->getStatusCode() === 200;
+        echo $status ? 'PONG' : 'ERROR';
     }
 }
