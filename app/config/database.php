@@ -1,13 +1,8 @@
 <?php
 
-/**
- * This file is part of Spiral package.
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 declare(strict_types=1);
+
+use Cycle\Database\Config;
 
 return [
     /**
@@ -36,10 +31,15 @@ return [
      * the driver class and its connection options.
      */
     'drivers'   => [
-        'sqlite' => [
-            'driver'     => \Spiral\Database\Driver\SQLite\SQLiteDriver::class,
-            'connection' => 'sqlite:' . directory('root') . '/../app.db',
-            'profiling'  => true,
-        ],
+        'sqlite' => new Config\MySQLDriverConfig(
+            connection: new Config\MySQL\TcpConnectionConfig(
+                database: 'keeper',
+                host: 'localhost',
+                port: 3394,
+                user: 'keeper',
+                password: 'root',
+            ),
+            queryCache: true
+        ),
     ],
 ];

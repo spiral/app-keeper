@@ -1,12 +1,5 @@
 <?php
 
-/**
- * This file is part of Spiral package.
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 declare(strict_types=1);
 
 namespace App\Controller;
@@ -25,12 +18,7 @@ class AuthController
 {
     use PrototypeTrait;
 
-    /**
-     * @Route(route="/login", name="auth:login")
-     *
-     * @param LoginRequest $request
-     * @return array
-     */
+    #[Route(route: '/login', name: 'auth:login')]
     public function login(LoginRequest $request): array
     {
         $user = $this->users->findByUsername($request->getUsername());
@@ -55,13 +43,8 @@ class AuthController
         ];
     }
 
-    /**
-     * @Route(route="/logout", name="auth:logout")
-     *
-     * @param LogoutRequest $logout
-     * @return ResponseInterface
-     */
-    public function logout(LogoutRequest $logout)
+    #[Route(route: '/logout', name: 'auth:logout')]
+    public function logout(LogoutRequest $logout): ResponseInterface
     {
         if ($this->auth->getToken() === null || $this->auth->getToken()->getID() !== $logout->getToken()) {
             throw new BadRequestException();

@@ -1,35 +1,24 @@
 <?php
 
-/**
- * This file is part of Spiral package.
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 declare(strict_types=1);
 
 namespace App\Mapper\Traits;
 
+use Cycle\Annotated\Annotation\Column;
+
 trait TsTrait
 {
-    /** @var \DateTimeImmutable|null */
-    private $createdAt;
+    #[Column(type: 'datetime', name: 'created_at', nullable: true)]
+    private ?\DateTimeImmutable $createdAt = null;
 
-    /** @var \DateTimeImmutable|null */
-    private $updatedAt;
+    #[Column(type: 'datetime', name: 'updated_at', nullable: true)]
+    private ?\DateTimeImmutable $updatedAt = null;
 
-    /**
-     * @return \DateTimeInterface|null
-     */
     public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->createdAt;
     }
 
-    /**
-     * @return \DateTimeInterface|null
-     */
     public function getUpdatedAt(): ?\DateTimeInterface
     {
         return $this->updatedAt;

@@ -684,7 +684,7 @@
                                                 }
                                             }
                                         }
-                                    }
+                                    },
                                     "responsive": {
                                         listSummaryColumn: "name",
                                         tableClass: "table d-none d-md-table",

@@ -9,4 +9,4 @@ services:
       - ./.env:/var/www/.env
     env_file:
       - .env
-    command: "/var/server/spiral serve -v -d -o http.workers.pool.numWorkers=1 -o http.workers.pool.maxJobs=1"
+    command: "/var/server/rr serve -d -o http.pool.num_workers=1 -o http.pool.debug=true -o jobs.pool.num_workers=1"

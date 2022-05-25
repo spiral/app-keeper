@@ -1,19 +1,12 @@
 <?php
 
-/**
- * This file is part of Spiral package.
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 declare(strict_types=1);
 
 namespace App\Bootloader;
 
 use App\Controller\Keeper\DashboardController;
-use Spiral\DataGrid\Interceptor\GridInterceptor;
-use Spiral\Domain\CycleInterceptor;
+use Spiral\Cycle\DataGrid\Interceptor\GridInterceptor;
+use Spiral\Cycle\Interceptor\CycleInterceptor;
 use Spiral\Domain\FilterInterceptor;
 use Spiral\Domain\GuardInterceptor;
 use Spiral\Keeper\Bootloader as Keeper;
