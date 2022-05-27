@@ -17,8 +17,8 @@
     "require": {
         "php": ">=8.0",
         "ext-json": "*",
+        "fakerphp/faker": "^1.19",
         "spiral/cycle-bridge": "^1.0",
-        "fzaninotto/faker": "^1.9",
         "spiral/framework": "^2.9",
         "spiral/helpers": "^1.0",
         "spiral/keeper": "^0.9",
