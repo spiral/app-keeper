@@ -14,7 +14,7 @@ namespace App\Controller\Keeper;
 use Spiral\Keeper\Annotation as Keeper;
 use Spiral\Prototype\Traits\PrototypeTrait;
 
-#[Keeper\Controller(name: 'dashboard', prefix: "", defaultAction: 'index')]
+#[Keeper\Controller(name: 'dashboard', prefix: '', defaultAction: 'index')]
 class DashboardController
 {
     use PrototypeTrait;
