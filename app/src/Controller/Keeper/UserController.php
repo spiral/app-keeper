@@ -17,36 +17,28 @@ use Spiral\Keeper\Annotation as Keeper;
 use Spiral\Keeper\Module\RouteRegistry;
 use Spiral\Prototype\Traits\PrototypeTrait;
 
-/**
- * @Keeper\Controller(name="users", prefix="/users")
- * @Keeper\Sitemap\Group(name="users", title="User Management", options={"icon": "users"}, position=2.0)
- */
+#[Keeper\Controller(name: 'users', prefix: '/users')]
+#[Keeper\Sitemap\Group(name: 'users', title: 'User Management', options: ['icon' => 'users'], position: 2.0)]
 class UserController
 {
     use PrototypeTrait;
 
-    /**
-     * @Keeper\Action(route="", methods="GET")
-     * @Keeper\Sitemap\Link(title="Users", options={"icon": "users"})
-     */
-    public function index()
+    #[Keeper\Action(route: '', methods: 'GET')]
+    #[Keeper\Sitemap\Link(title: 'Users', options: ['icon' => 'users'])]
+    public function index(): string
     {
         return $this->views->render('keeper/user/list');
     }
 
-    /**
-     * @Keeper\Action(route="/create", methods="GET")
-     * @Keeper\Sitemap\View(title="Create User", parent="index")
-     */
-    public function new()
+    #[Keeper\Action(route: '/create', methods: 'GET')]
+    #[Keeper\Sitemap\View(parent: 'index', title: 'Create User')]
+    public function new(): string
     {
         return $this->views->render('keeper/user/create');
     }
 
-    /**
-     * @Keeper\Action(route="", methods="PUT")
-     */
-    public function create(CreateRequest $request, RouteRegistry $routes)
+    #[Keeper\Action(route: '', methods: 'PUT')]
+    public function create(CreateRequest $request, RouteRegistry $routes): array
     {
         $user = $request->map(new User(), $this->guard, $this->passwords);
         $this->entities->save($user);
@@ -60,23 +52,16 @@ class UserController
         ];
     }
 
-    /**
-     * @Keeper\Action(route="/<user:int>", methods="GET")
-     * @Keeper\Sitemap\View(title="Edit User", parent="index")
-     *
-     * @param User $user
-     * @return string
-     */
+    #[Keeper\Action(route: '/<user:int>', methods: 'GET')]
+    #[Keeper\Sitemap\View(parent: 'index', title: 'Edit User')]
     public function edit(User $user): string
     {
         return $this->views->render('keeper/user/edit', compact('user'));
     }
 
-    /**
-     * @Keeper\Action(route="/<user:int>", methods="POST")
-     * @Guarded(permission="users.update", else="forbidden")
-     */
-    public function update(User $user, UpdateRequest $request)
+    #[Keeper\Action(route: '/<user:int>', methods: 'POST')]
+    #[Guarded(permission: 'users.update', else: 'forbidden')]
+    public function update(User $user, UpdateRequest $request): array
     {
         $user = $request->map($user);
         $this->entities->save($user);
@@ -88,11 +73,9 @@ class UserController
         ];
     }
 
-    /**
-     * @Keeper\Action(route="/roles/<user:int>", methods="POST")
-     * @Guarded(permission="users.roles", else="forbidden")
-     */
-    public function roles(User $user, RolesRequest $request)
+    #[Keeper\Action(route: '/roles/<user:int>', methods: 'POST')]
+    #[Guarded(permission: 'users.roles', else: 'forbidden')]
+    public function roles(User $user, RolesRequest $request): array
     {
         $user = $request->map($user);
         $this->entities->save($user);
@@ -103,11 +86,9 @@ class UserController
         ];
     }
 
-    /**
-     * @Keeper\Action(route="/password/<user:int>", methods="POST")
-     * @Guarded(permission="users.password", else="forbidden")
-     */
-    public function password(User $user, UpdatePasswordRequest $request)
+    #[Keeper\Action(route: '/password/<user:int>', methods: 'POST')]
+    #[Guarded(permission: 'users.password', else: 'forbidden')]
+    public function password(User $user, UpdatePasswordRequest $request): array
     {
         $user = $request->map($user, $this->passwords);
         $this->entities->save($user);
@@ -118,11 +99,9 @@ class UserController
         ];
     }
 
-    /**
-     * @Keeper\Action(route="/<user:int>", methods="DELETE")
-     * @Guarded(permission="users.delete", else="forbidden")
-     */
-    public function delete(User $user)
+    #[Keeper\Action(route: '/<user:int>', methods: 'DELETE')]
+    #[Guarded(permission: 'users.delete', else: 'forbidden')]
+    public function delete(User $user): array
     {
         $this->entities->delete($user);
 
@@ -132,19 +111,15 @@ class UserController
         ];
     }
 
-    /**
-     * @Keeper\Action(route="/list", methods="GET")
-     * @DataGrid(grid=UserGrid::class)
-     */
+    #[Keeper\Action(route: '/list', methods: 'GET')]
+    #[DataGrid(grid: UserGrid::class)]
     public function list(): Select
     {
         return $this->users->select();
     }
 
-    /**
-     * @Keeper\Action(route="/forbidden")
-     * @Keeper\Sitemap\Link(title="Forbidden")
-     */
+    #[Keeper\Action(route: '/forbidden')]
+    #[Keeper\Sitemap\Link(title: 'Forbidden')]
     public function forbidden(): void
     {
     }

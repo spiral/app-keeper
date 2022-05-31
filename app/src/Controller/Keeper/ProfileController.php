@@ -21,36 +21,28 @@ use Spiral\Prototype\Traits\PrototypeTrait;
 use Spiral\Security\ActorInterface;
 use Spiral\Translator\Traits\TranslatorTrait;
 
-/**
- * @Keeper\Controller(name="profile")
- */
+#[Keeper\Controller(name: 'profile')]
 class ProfileController implements SingletonInterface
 {
     use PrototypeTrait;
     use TranslatorTrait;
 
-    /**
-     * @Keeper\Action(route="/me", methods="GET")
-     *
-     * @param ActorInterface $actor
-     * @return string
-     */
-    public function me(ActorInterface $actor)
+    #[Keeper\Action(route: '/me', methods: 'GET')]
+    public function me(ActorInterface $actor): string
     {
         return $this->views->render('keeper/me', ['user' => $actor]);
     }
 
     /**
-     * @Keeper\Action(route="/<user>/update", methods="POST")
-     * @Guarded(permission="self.update", else="forbidden")
-     *
      * @param UpdateRequest $request
      * @param User          $user
      * @return array
      *
      * @throws PersistException
      */
-    public function update(UpdateRequest $request, User $user)
+    #[Keeper\Action(route: '/<user>/update', methods: 'POST')]
+    #[Guarded(permission: 'self.update', else: 'forbidden')]
+    public function update(UpdateRequest $request, User $user): array
     {
         if (!$this->passwords->compare($request->currentPassword, $user->passwordHash)) {
             return [
