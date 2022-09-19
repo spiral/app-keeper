@@ -13,7 +13,7 @@ use Spiral\Writeaway\MetaProviderInterface;
 class AppBootloader extends DomainBootloader
 {
     protected const SINGLETONS = [
-        CoreInterface::class => [self::class, 'domainCore']
+        CoreInterface::class => [self::class, 'domainCore'],
     ];
 
     protected const BINDINGS = [
@@ -21,6 +21,6 @@ class AppBootloader extends DomainBootloader
     ];
 
     protected const INTERCEPTORS = [
-        ValidationInterceptor::class
+        ValidationInterceptor::class,
     ];
 }

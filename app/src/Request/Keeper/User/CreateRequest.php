@@ -65,7 +65,7 @@ class CreateRequest extends Filter implements HasFilterDefinition
                 'string',
                 'required',
                 'email',
-                ['entity:unique', 'user', 'email', 'error' => '[[Email address already used.]]']
+                ['entity:unique', 'user', 'email', 'error' => '[[Email address already used.]]'],
             ],
             'password' => [
                 'required',

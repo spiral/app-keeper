@@ -20,7 +20,7 @@ class LogoutRequest extends Filter implements HasFilterDefinition
     public function filterDefinition(): FilterDefinitionInterface
     {
         return new FilterDefinition([
-            'token' => ['string', 'required']
+            'token' => ['string', 'required'],
         ]);
     }
 }

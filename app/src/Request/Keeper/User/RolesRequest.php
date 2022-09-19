@@ -41,7 +41,7 @@ class RolesRequest extends Filter implements HasFilterDefinition
             'roles' => [
                 'array',
                 ['required', 'error' => '[[At least one role is required.]]'],
-                [[self::class, 'validRoles'], 'error' => '[[Invalid roles.]]']
+                [[self::class, 'validRoles'], 'error' => '[[Invalid roles.]]'],
             ]
         ]);
     }

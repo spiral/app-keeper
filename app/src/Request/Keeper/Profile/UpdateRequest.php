@@ -80,7 +80,7 @@ class UpdateRequest extends Filter implements HasFilterDefinition
                 ['required', 'if' => ['withAll' => ['password']]],
                 ['match', 'password', 'error' => '[[Passwords do not match.]]'],
             ],
-            'currentPassword' => ['string', 'required']
+            'currentPassword' => ['string', 'required'],
         ]);
     }
 }

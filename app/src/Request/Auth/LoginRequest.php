@@ -28,12 +28,12 @@ class LoginRequest extends Filter implements HasFilterDefinition
     public readonly string $password;
 
     #[Post]
-    #[Setter('strval')]
-    private readonly string $code;
-
-    #[Post]
     #[Setter('boolval')]
     public bool $remember = false;
+
+    #[Post]
+    #[Setter('strval')]
+    private readonly string $code;
 
     public function getCode(): ?string
     {
@@ -60,7 +60,7 @@ class LoginRequest extends Filter implements HasFilterDefinition
         return new FilterDefinition([
             'username' => ['string', 'required'],
             'password' => ['string', 'required'],
-            'code' => ['string']
+            'code' => ['string'],
         ]);
     }
 }
