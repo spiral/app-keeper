@@ -1,47 +1,31 @@
 <?php
 
-/**
- * This file is part of Spiral package.
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 declare(strict_types=1);
 
 namespace App\Request\Keeper\User;
 
 use App\Database\User;
-use Spiral\Filters\Filter;
+use Spiral\Filters\Attribute\Input\Post;
+use Spiral\Filters\Attribute\Setter;
+use Spiral\Filters\Model\Filter;
+use Spiral\Filters\Model\FilterDefinitionInterface;
+use Spiral\Filters\Model\HasFilterDefinition;
+use Spiral\Validator\FilterDefinition;
 
-/**
- * @property string $firstName
- * @property string $lastName
- * @property string $email
- */
-class UpdateRequest extends Filter
+class UpdateRequest extends Filter implements HasFilterDefinition
 {
-    protected const SCHEMA = [
-        'email'     => 'data:email',
-        'firstName' => 'data:firstName',
-        'lastName'  => 'data:lastName',
-    ];
+    #[Post]
+    #[Setter('strval')]
+    public readonly string $email;
 
-    protected const VALIDATES = [
-        'email'     => [
-            ['notEmpty'],
-            ['string'],
-            ['email'],
-            ['entity:unique', 'user', 'email', 'error' => '[[Email address already used.]]'],
-        ],
-        'firstName' => ['notEmpty', 'string'],
-        'lastName'  => ['notEmpty', 'string'],
-    ];
+    #[Post]
+    #[Setter('strval')]
+    public readonly string $firstName;
 
-    /**
-     * @param User $user
-     * @return User
-     */
+    #[Post]
+    #[Setter('strval')]
+    public readonly string $lastName;
+
     public function map(User $user): User
     {
         $user->firstName = $this->firstName;
@@ -49,5 +33,19 @@ class UpdateRequest extends Filter
         $user->email = $this->email;
 
         return $user;
+    }
+
+    public function filterDefinition(): FilterDefinitionInterface
+    {
+        return new FilterDefinition([
+            'email' => [
+                'string',
+                'required',
+                'email',
+                ['entity:unique', 'user', 'email', 'error' => '[[Email address already used.]]']
+            ],
+            'firstName' => ['string', 'required'],
+            'lastName' => ['string', 'required']
+        ]);
     }
 }

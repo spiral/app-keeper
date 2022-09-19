@@ -1,12 +1,5 @@
 <?php
 
-/**
- * Spiral Framework.
- *
- * @license   MIT
- * @author    Anton Titov (Wolfy-J)
- */
-
 declare(strict_types=1);
 
 namespace App\Controller\Keeper;
@@ -34,10 +27,6 @@ class ProfileController implements SingletonInterface
     }
 
     /**
-     * @param UpdateRequest $request
-     * @param User          $user
-     * @return array
-     *
      * @throws PersistException
      */
     #[Keeper\Action(route: '/<user>/update', methods: 'POST')]

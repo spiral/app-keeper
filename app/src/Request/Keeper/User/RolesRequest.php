@@ -1,51 +1,29 @@
 <?php
 
-/**
- * This file is part of Spiral package.
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 declare(strict_types=1);
 
 namespace App\Request\Keeper\User;
 
 use App\Bootloader\SecurityBootloader;
 use App\Database\User;
-use Spiral\Filters\Filter;
+use Spiral\Filters\Attribute\Input\Post;
+use Spiral\Filters\Model\Filter;
+use Spiral\Filters\Model\FilterDefinitionInterface;
+use Spiral\Filters\Model\HasFilterDefinition;
+use Spiral\Validator\FilterDefinition;
 
-/**
- * @property array $roles
- */
-class RolesRequest extends Filter
+class RolesRequest extends Filter implements HasFilterDefinition
 {
-    protected const SCHEMA = [
-        'roles' => 'data:roles',
-    ];
+    #[Post]
+    public readonly array $roles;
 
-    protected const VALIDATES = [
-        'roles' => [
-            ['notEmpty', 'error' => 'At least one role is required.'],
-            ['array'],
-            [[self::class, 'validRoles'], 'error' => 'Invalid roles.'],
-        ],
-    ];
-
-    /**
-     * @param User $user
-     * @return User
-     */
     public function map(User $user): User
     {
-        $user->roles = join(',', $this->roles);
+        $user->roles = \implode(',', $this->roles);
+
         return $user;
     }
 
-    /**
-     * @param array $roles
-     * @return bool
-     */
     public static function validRoles(array $roles): bool
     {
         foreach ($roles as $role) {
@@ -55,5 +33,16 @@ class RolesRequest extends Filter
         }
 
         return true;
+    }
+
+    public function filterDefinition(): FilterDefinitionInterface
+    {
+        return new FilterDefinition([
+            'roles' => [
+                'array',
+                ['required', 'error' => '[[At least one role is required.]]'],
+                [[self::class, 'validRoles'], 'error' => '[[Invalid roles.]]']
+            ]
+        ]);
     }
 }

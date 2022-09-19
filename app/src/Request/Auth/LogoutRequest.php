@@ -1,37 +1,26 @@
 <?php
 
-/**
- * This file is part of Spiral package.
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 declare(strict_types=1);
 
 namespace App\Request\Auth;
 
-use Spiral\Filters\Filter;
+use Spiral\Filters\Attribute\Input\Input;
+use Spiral\Filters\Attribute\Setter;
+use Spiral\Filters\Model\Filter;
+use Spiral\Filters\Model\FilterDefinitionInterface;
+use Spiral\Filters\Model\HasFilterDefinition;
+use Spiral\Validator\FilterDefinition;
 
-class LogoutRequest extends Filter
+class LogoutRequest extends Filter implements HasFilterDefinition
 {
-    protected const SCHEMA = [
-        'token' => 'query:token',
-    ];
+    #[Input]
+    #[Setter('strval')]
+    public readonly string $token;
 
-    protected const VALIDATES = [
-        'token' => ['notEmpty', 'string'],
-    ];
-
-    protected const SETTERS = [
-        'token' => 'strval',
-    ];
-
-    /**
-     * @return string
-     */
-    public function getToken(): string
+    public function filterDefinition(): FilterDefinitionInterface
     {
-        return (string) $this->getField('token');
+        return new FilterDefinition([
+            'token' => ['string', 'required']
+        ]);
     }
 }
