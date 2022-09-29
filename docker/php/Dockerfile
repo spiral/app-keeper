@@ -52,8 +52,6 @@ RUN composer install --no-autoloader --no-scripts && \
 
 COPY ./ /var/www
 
-RUN composer run-script post-create-project-cmd
-
 COPY --from=builder /usr/bin/rr /var/server/
 COPY ./.rr.yaml /var/server/
 COPY ./wait-for-it.sh /var/server/

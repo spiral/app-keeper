@@ -11,6 +11,7 @@ services:
       - db
   db:
     image: mysql:8.0
+    container_name: keeper-db
     ports:
       - 3394:3306 # 3394 on host system
     restart: on-failure
