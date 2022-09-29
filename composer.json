@@ -54,7 +54,10 @@
     },
     "config": {
         "sort-packages": true,
-        "bin-dir": "bin"
+        "bin-dir": "bin",
+        "allow-plugins": {
+            "spiral/composer-publish-plugin": true
+        }
     },
     "minimum-stability": "dev",
     "prefer-stable": true
