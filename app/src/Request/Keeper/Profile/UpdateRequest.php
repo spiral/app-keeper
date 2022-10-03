@@ -1,72 +1,43 @@
 <?php
 
-/**
- * This file is part of Spiral package.
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 declare(strict_types=1);
 
 namespace App\Request\Keeper\Profile;
 
 use App\Database\User;
 use App\Security\PasswordHasher;
-use Spiral\Filters\Filter;
+use Spiral\Filters\Attribute\Input\Post;
+use Spiral\Filters\Attribute\Setter;
+use Spiral\Filters\Model\Filter;
+use Spiral\Filters\Model\FilterDefinitionInterface;
+use Spiral\Filters\Model\HasFilterDefinition;
+use Spiral\Validator\FilterDefinition;
 
-/**
- * @property string $firstName
- * @property string $lastName
- * @property string $email
- * @property string $password
- * @property string $confirmPassword
- * @property string $currentPassword
- */
-class UpdateRequest extends Filter
+class UpdateRequest extends Filter implements HasFilterDefinition
 {
-    protected const SCHEMA = [
-        'firstName'       => 'data:firstName',
-        'lastName'        => 'data:lastName',
-        'email'           => 'data:email',
-        'password'        => 'data:password',
-        'confirmPassword' => 'data:confirmPassword',
-        'currentPassword' => 'data:currentPassword',
-    ];
+    #[Post]
+    #[Setter('strval')]
+    public readonly string $firstName;
 
-    protected const VALIDATES = [
-        'firstName'       => ['notEmpty', 'string'],
-        'lastName'        => ['notEmpty', 'string'],
-        'email'           => [
-            ['notEmpty'],
-            ['string'],
-            ['email'],
-            ['entity:unique', 'user', 'email', 'error' => 'Email address already used.'],
-        ],
-        'password'        => [
-            ['string'],
-            [
-                [PasswordHasher::class, 'checkPassword'],
-                'error' => 'Password is too weak.',
-                'if'    => ['withAll' => ['password']],
-            ],
-        ],
-        'confirmPassword' => [
-            'string',
-            ['notEmpty', 'if' => ['withAll' => ['password']]],
-            ['match', 'password', 'error' => 'Passwords do not match.'],
-        ],
-        'currentPassword' => ['notEmpty', 'string'],
-    ];
+    #[Post]
+    #[Setter('strval')]
+    public readonly string $lastName;
 
-    protected const SETTERS = [
-        'firstName'       => 'strval',
-        'lastName'        => 'strval',
-        'email'           => 'strval',
-        'password'        => 'strval',
-        'confirmPassword' => 'strval',
-        'currentPassword' => 'strval',
-    ];
+    #[Post]
+    #[Setter('strval')]
+    public readonly string $email;
+
+    #[Post]
+    #[Setter('strval')]
+    public readonly string $password;
+
+    #[Post]
+    #[Setter('strval')]
+    public readonly string $confirmPassword;
+
+    #[Post]
+    #[Setter('strval')]
+    public readonly string $currentPassword;
 
     /**
      * @param User           $user
@@ -84,5 +55,33 @@ class UpdateRequest extends Filter
         }
 
         return $user;
+    }
+
+    public function filterDefinition(): FilterDefinitionInterface
+    {
+        return new FilterDefinition([
+            'firstName' => ['string', 'required'],
+            'lastName' => ['string', 'required'],
+            'email' => [
+                'string',
+                'required',
+                'email',
+                ['entity:unique', 'user', 'email', 'error' => '[[Email address already used.]]'],
+            ],
+            'password' => [
+                'string',
+                [
+                    [PasswordHasher::class, 'checkPassword'],
+                    'error' => '[[Password is too weak.]]',
+                    'if'    => ['withAll' => ['password']],
+                ],
+            ],
+            'confirmPassword' => [
+                'string',
+                ['required', 'if' => ['withAll' => ['password']]],
+                ['match', 'password', 'error' => '[[Passwords do not match.]]'],
+            ],
+            'currentPassword' => ['string', 'required'],
+        ]);
     }
 }

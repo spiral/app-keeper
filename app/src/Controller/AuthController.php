@@ -21,8 +21,8 @@ class AuthController
     #[Route(route: '/login', name: 'auth:login')]
     public function login(LoginRequest $request): array
     {
-        $user = $this->users->findByUsername($request->getUsername());
-        if ($user === null || !$this->passwords->compare($request->getPassword(), $user->passwordHash)) {
+        $user = $this->users->findByUsername($request->username);
+        if ($user === null || !$this->passwords->compare($request->password, $user->passwordHash)) {
             return [
                 'status' => 400,
                 'error'  => 'No such user',
@@ -46,7 +46,7 @@ class AuthController
     #[Route(route: '/logout', name: 'auth:logout')]
     public function logout(LogoutRequest $logout): ResponseInterface
     {
-        if ($this->auth->getToken() === null || $this->auth->getToken()->getID() !== $logout->getToken()) {
+        if ($this->auth->getToken() === null || $this->auth->getToken()->getID() !== $logout->token) {
             throw new BadRequestException();
         }
 

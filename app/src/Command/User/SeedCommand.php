@@ -1,12 +1,5 @@
 <?php
 
-/**
- * This file is part of Spiral package.
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 declare(strict_types=1);
 
 namespace App\Command\User;
@@ -23,19 +16,23 @@ class SeedCommand extends Command
     protected const NAME        = 'user:seed';
     protected const DESCRIPTION = 'Seed application users';
 
-    protected function perform(): void
+    protected function perform(): int
     {
         $faker = Factory::create(Factory::DEFAULT_LOCALE);
 
         for ($i = 0; $i < 100; $i++) {
             $user = new User();
-            $user->firstName = $faker->firstName;
-            $user->lastName = $faker->lastName;
-            $user->email = $faker->email;
-            $user->passwordHash = $this->passwords->hash($faker->password);
+            $user->firstName = $faker->firstName();
+            $user->lastName = $faker->lastName();
+            $user->email = $faker->email();
+            $user->passwordHash = $this->passwords->hash($faker->password());
             $user->roles = 'user';
 
             $this->entities->save($user);
         }
+
+        $this->output->success('Database seeding completed successfully.');
+
+        return self::SUCCESS;
     }
 }

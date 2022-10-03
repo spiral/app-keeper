@@ -1,53 +1,48 @@
 <?php
 
-/**
- * This file is part of Spiral package.
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 declare(strict_types=1);
 
 namespace App\Request\Keeper\User;
 
 use App\Database\User;
 use App\Security\PasswordHasher;
-use Spiral\Filters\Filter;
+use Spiral\Filters\Attribute\Input\Post;
+use Spiral\Filters\Attribute\Setter;
+use Spiral\Filters\Model\Filter;
+use Spiral\Filters\Model\FilterDefinitionInterface;
+use Spiral\Filters\Model\HasFilterDefinition;
+use Spiral\Validator\FilterDefinition;
 
-/**
- * @property string $password
- * @property string $confirmPassword
- */
-class UpdatePasswordRequest extends Filter
+class UpdatePasswordRequest extends Filter implements HasFilterDefinition
 {
-    protected const SCHEMA = [
-        'password'        => 'data:password',
-        'confirmPassword' => 'data:confirmPassword',
-    ];
+    #[Post]
+    #[Setter('strval')]
+    public readonly string $password;
 
-    protected const VALIDATES = [
-        'password'        => [
-            'notEmpty',
-            'string',
-            [[PasswordHasher::class, 'checkPassword'], 'error' => 'Password is too weak.'],
-        ],
-        'confirmPassword' => [
-            'notEmpty',
-            'string',
-            ['match', 'password', 'error' => 'Passwords do not match.'],
-        ],
-    ];
+    #[Post]
+    #[Setter('strval')]
+    public readonly string $confirmPassword;
 
-    /**
-     * @param User           $user
-     * @param PasswordHasher $passwordManager
-     * @return User
-     */
     public function map(User $user, PasswordHasher $passwordManager): User
     {
         $user->passwordHash = $passwordManager->hash($this->password);
 
         return $user;
+    }
+
+    public function filterDefinition(): FilterDefinitionInterface
+    {
+        return new FilterDefinition([
+            'password' => [
+                'required',
+                'string',
+                [[PasswordHasher::class, 'checkPassword'], 'error' => '[[Password is too weak.]]'],
+            ],
+            'confirmPassword' => [
+                'string',
+                'required',
+                ['match', 'password', 'error' => '[[Passwords do not match.]]'],
+            ],
+        ]);
     }
 }
