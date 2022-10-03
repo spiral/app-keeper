@@ -34,7 +34,7 @@ return [
         'mysql' => new Config\MySQLDriverConfig(
             connection: new Config\MySQL\TcpConnectionConfig(
                 database: 'keeper',
-                host: 'db',
+                host: 'keeper-db',
                 port: 3306,
                 user: 'keeper',
                 password: 'root',
