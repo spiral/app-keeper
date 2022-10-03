@@ -23,7 +23,7 @@
         "spiral/cycle-bridge": "^2.0",
         "spiral/framework": "^3.0",
         "spiral/helpers": "^1.0",
-        "spiral/keeper": "0.10",
+        "spiral/keeper": "^0.10",
         "spiral/nyholm-bridge": "^1.2",
         "spiral/roadrunner-bridge": "^2.0",
         "spiral/sapi-bridge": "^1.0",
