@@ -83,9 +83,10 @@
             <stack:push name="scripts" unique-id="datagrid-bulkdelete">
                 <script type="text/javascript">
                     window['datagrid-bulkdelete'] = function (state, grid, actionBar, event) {
+                        console.log(Array.from(state.selectedKeys));
                         SFKeeper.confirmModal("Delete users", "Do you wish to delete " + state.selectedCount + " users?").then(
                             function () {
-                                SFToolkit.ajax.send({url: '/fake-delete', data: {ids: state.selectedIds}}).then(() => {
+                                SFToolkit.ajax.send({url: '/fake-delete', data: {ids: Array.from(state.selectedKeys)}}).then(() => {
                                     grid.reload();
                                     const event = new CustomEvent('sf:notification-show', {
                                         bubbles: true,
@@ -145,7 +146,7 @@
                     window['datagrid-bulkdelete'] = function (state, grid, actionBar, event) {
                         SFKeeper.confirmModal("Delete users", "Do you wish to delete " + state.selectedCount + " users?").then(
                             function () {
-                                SFToolkit.ajax.send({url: '/fake-delete', data: {ids: state.selectedIds}}).then(() =&gt; {
+                                SFToolkit.ajax.send({url: '/fake-delete', data: {ids: Array.from(state.selectedKeys)}}).then(() =&gt; {
                                     grid.reload();
                                     const event = new CustomEvent('sf:notification-show', {
                                         bubbles: true,
