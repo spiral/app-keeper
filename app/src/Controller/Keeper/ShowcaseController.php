@@ -41,6 +41,13 @@ class ShowcaseController
         return $this->views->render('keeper/showcase/tinymce');
     }
 
+    #[Keeper\Action(route: '/codeeditor', methods: 'GET')]
+    #[Keeper\Sitemap\Link(title: 'Code Editor', parent: 'showcase', options: ['icon' => 'code'])]
+    public function showcaseCodeEditor(): string
+    {
+        return $this->views->render('keeper/showcase/codeeditor');
+    }
+
     #[Keeper\Action(route: '/datepicker', methods: 'GET')]
     #[Keeper\Sitemap\Link(title: 'Datepicker', parent: 'showcase', options: ['icon' => 'calendar'])]
     public function showcaseDatepicker(): string
