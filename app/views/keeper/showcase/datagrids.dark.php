@@ -80,6 +80,124 @@
             </ui:panel>
         </ui:col.12>
         <ui:col.12>
+            <stack:push name="scripts" unique-id="datagrid-bulkdelete">
+                <script type="text/javascript">
+                    window['datagrid-bulkdelete'] = function (state, grid, actionBar, event) {
+                        console.log(Array.from(state.selectedKeys));
+                        SFKeeper.confirmModal("Delete users", "Do you wish to delete " + state.selectedCount + " users?").then(
+                            function () {
+                                SFToolkit.ajax.send({url: '/fake-delete', data: {ids: Array.from(state.selectedKeys)}}).then(() => {
+                                    grid.reload();
+                                    const event = new CustomEvent('sf:notification-show', {
+                                        bubbles: true,
+                                        detail: {
+                                            message: `Succesfully deleted users`,
+                                            type: 'primary',
+                                            position: 'tr',
+                                            timeout: 2000,
+                                        },
+                                    });
+                                    document.dispatchEvent(event);
+                                }).catch(() => {
+                                    grid.reload();
+                                    const event = new CustomEvent('sf:notification-show', {
+                                        bubbles: true,
+                                        detail: {
+                                            message: `Failed to delete users`,
+                                            type: 'danger',
+                                            position: 'tr',
+                                            timeout: 2000,
+                                        },
+                                    });
+                                    document.dispatchEvent(event);
+                                });
+                            }
+                        )
+                    }
+                </script>
+            </stack:push>
+            <ui:grid url="@action('users.list', inject('params', []))" namespace="main" selectable="id">
+                <grid:filter search="true" immediate="300" buttons="true">
+                    <form:input name="firstName" label="First Name" value="" size="6" required="true"/>
+                    <form:input name="lastName" label="Last Name" value="" size="6" required="true"/>
+                    <form:input name="email" label="Email" value="" required="true"/>
+                </grid:filter>
+                <grid:cell.link name="name" label="Name" url="@action('users.edit', ['user' => '{id}'])" sort="true">
+                    {firstName}&nbsp;{lastName}
+                </grid:cell.link>
+                <grid:cell.link name="email" label="Email" href="mailto:{email}" body="{email}" sort="true"/>
+                <grid:cell.date name="created" label="Created At" sort="true" sort-dir="desc" sort-default="true"/>
+                <grid:cell.render name="roles" label="Roles" renderer="roles"/>
+                <grid:cell.template name="id" label="ID" template="{id}"/>
+                <grid:action.link label="Edit" icon="edit" url="@action('users.edit', ['user'=>'{id}'])"/>
+                <grid:action.delete url="@action('users.edit', ['user'=>'{id}'])"/>
+                <grid:bulkaction id="delete" class="custom-class" onclick="datagrid-bulkdelete" action="datagrid-bulkdelete">
+                    <div class="btn btn-danger">Delete</div>
+                </grid:bulkaction>
+            </ui:grid>
+        </ui:col.12>
+        <ui:col.12>
+
+            <utils:syntaxhilight />
+            <pre><code class="language-markup">
+
+            &lt;stack:push name="scripts" unique-id="datagrid-bulkdelete"&gt;
+                &lt;script type="text/javascript"&gt;
+                    window['datagrid-bulkdelete'] = function (state, grid, actionBar, event) {
+                        SFKeeper.confirmModal("Delete users", "Do you wish to delete " + state.selectedCount + " users?").then(
+                            function () {
+                                SFToolkit.ajax.send({url: '/fake-delete', data: {ids: Array.from(state.selectedKeys)}}).then(() =&gt; {
+                                    grid.reload();
+                                    const event = new CustomEvent('sf:notification-show', {
+                                        bubbles: true,
+                                        detail: {
+                                            message: `Succesfully deleted users`,
+                                            type: 'primary',
+                                            position: 'tr',
+                                            timeout: 2000,
+                                        },
+                                    });
+                                    document.dispatchEvent(event);
+                                }).catch(() =&gt; {
+                                    grid.reload();
+                                    const event = new CustomEvent('sf:notification-show', {
+                                        bubbles: true,
+                                        detail: {
+                                            message: `Failed to delete users`,
+                                            type: 'danger',
+                                            position: 'tr',
+                                            timeout: 2000,
+                                        },
+                                    });
+                                    document.dispatchEvent(event);
+                                });
+                            }
+                        )
+                    }
+                &lt;/script&gt;
+            &lt;/stack:push&gt;
+            &lt;ui:grid url="action url here" namespace="main" selectable="id"&gt;
+                &lt;grid:filter search="true" immediate="300" buttons="true"&gt;
+                    &lt;form:input name="firstName" label="First Name" value="" size="6" required="true"/&gt;
+                    &lt;form:input name="lastName" label="Last Name" value="" size="6" required="true"/&gt;
+                    &lt;form:input name="email" label="Email" value="" required="true"/&gt;
+                &lt;/grid:filter&gt;
+                &lt;grid:cell.link name="name" label="Name" url="action url here" sort="true"&gt;
+                    {firstName}&nbsp;{lastName}
+                &lt;/grid:cell.link&gt;
+                &lt;grid:cell.link name="email" label="Email" href="mailto:{email}" body="{email}" sort="true"/&gt;
+                &lt;grid:cell.date name="created" label="Created At" sort="true" sort-dir="desc" sort-default="true"/&gt;
+                &lt;grid:cell.render name="roles" label="Roles" renderer="roles"/&gt;
+                &lt;grid:cell.template name="id" label="ID" template="{id}"/&gt;
+                &lt;grid:action.link label="Edit" icon="edit" url="action url here"/&gt;
+                &lt;grid:action.delete url="action url here"/&gt;
+                &lt;grid:bulkaction id="delete" class="custom-class" onclick="datagrid-bulkdelete" action="datagrid-bulkdelete"&gt;
+                    &lt;div class="btn btn-danger"&gt;Delete&lt;/div&gt;
+                &lt;/grid:bulkaction&gt;
+            &lt;/ui:grid&gt;
+                </code></pre>
+        </ui:col.12>
+        <ui:col.12>
             <ui:panel header="Cell Types">
                 <h4>Text</h4>
                 <utils:syntaxhilight />
