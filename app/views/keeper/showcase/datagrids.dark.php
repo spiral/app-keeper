@@ -116,7 +116,7 @@
                     }
                 </script>
             </stack:push>
-            <ui:grid url="@action('users.list', inject('params', []))" namespace="main" selectable="id">
+            <ui:grid url="@action('users.list', inject('params', []))" namespace="main" selectable="id" selectable-type="multiple">
                 <grid:filter search="true" immediate="300" buttons="true">
                     <form:input name="firstName" label="First Name" value="" size="6" required="true"/>
                     <form:input name="lastName" label="Last Name" value="" size="6" required="true"/>
@@ -176,7 +176,7 @@
                     }
                 &lt;/script&gt;
             &lt;/stack:push&gt;
-            &lt;ui:grid url="action url here" namespace="main" selectable="id"&gt;
+            &lt;ui:grid url="action url here" namespace="main" selectable="id" selectable-type="multiple"&gt;
                 &lt;grid:filter search="true" immediate="300" buttons="true"&gt;
                     &lt;form:input name="firstName" label="First Name" value="" size="6" required="true"/&gt;
                     &lt;form:input name="lastName" label="Last Name" value="" size="6" required="true"/&gt;
