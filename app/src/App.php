@@ -120,10 +120,12 @@ class App extends Kernel
         // App
         Bootloader\RoutesBootloader::class,
         Bootloader\AppBootloader::class,
+
+        // fast code prototyping
+        Prototype\PrototypeBootloader::class,
     ];
 
     protected const APP = [
-        // fast code prototyping
-        Prototype\PrototypeBootloader::class,
+       // ...
     ];
 }
