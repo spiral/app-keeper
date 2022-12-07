@@ -34,7 +34,7 @@ class AdminBootloader extends KeeperBootloader
     protected function getMiddleware(): array
     {
         return [
-            new Autowire(LoginMiddleware::class, ['loginView' => 'keeper:login'])
+            new Autowire(LoginMiddleware::class, ['loginView' => 'keeper:login']),
         ];
     }
 }
