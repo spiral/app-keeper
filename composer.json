@@ -21,11 +21,11 @@
         "doctrine/collections": "^1.7",
         "fakerphp/faker": "^1.19",
         "spiral/cycle-bridge": "^2.0",
-        "spiral/framework": "^3.0",
+        "spiral/framework": "^3.4",
         "spiral/helpers": "^1.0",
         "spiral/keeper": "^0.10",
         "spiral/nyholm-bridge": "^1.2",
-        "spiral/roadrunner-bridge": "^2.0",
+        "spiral/roadrunner-bridge": "^3.3",
         "spiral/sapi-bridge": "^1.0",
         "spiral/toolkit": "^2.0",
         "spiral/writeaway": "^0.5"
