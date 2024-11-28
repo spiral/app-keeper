@@ -1,12 +1,5 @@
 <?php
 
-/**
- * This file is part of Spiral package.
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 declare(strict_types=1);
 
 namespace App\Command\User;
@@ -32,7 +25,7 @@ class CreateCommand extends Command
     /**
      * Perform command
      */
-    protected function perform(): void
+    protected function perform(): int
     {
         $user = new User();
         $user->firstName = $this->argument('firstName');
@@ -42,5 +35,9 @@ class CreateCommand extends Command
         $user->roles = 'super-admin';
 
         $this->entities->save($user);
+
+        $this->output->success('Super-Admin successfully created.');
+
+        return self::SUCCESS;
     }
 }

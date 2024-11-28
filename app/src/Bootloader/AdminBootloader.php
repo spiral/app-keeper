@@ -5,9 +5,10 @@ declare(strict_types=1);
 namespace App\Bootloader;
 
 use App\Controller\Keeper\DashboardController;
-use Spiral\Cycle\DataGrid\Interceptor\GridInterceptor;
+use App\Interceptor\ValidationInterceptor;
+use Spiral\Core\Container\Autowire;
+use Spiral\DataGrid\Interceptor\GridInterceptor;
 use Spiral\Cycle\Interceptor\CycleInterceptor;
-use Spiral\Domain\FilterInterceptor;
 use Spiral\Domain\GuardInterceptor;
 use Spiral\Keeper\Bootloader as Keeper;
 use Spiral\Keeper\Bootloader\KeeperBootloader;
@@ -26,11 +27,14 @@ class AdminBootloader extends KeeperBootloader
     protected const INTERCEPTORS = [
         CycleInterceptor::class,
         GuardInterceptor::class,
-        FilterInterceptor::class,
+        ValidationInterceptor::class,
         GridInterceptor::class,
     ];
 
-    protected const MIDDLEWARE = [
-        LoginMiddleware::class,
-    ];
+    protected function getMiddleware(): array
+    {
+        return [
+            new Autowire(LoginMiddleware::class, ['loginView' => 'keeper:login']),
+        ];
+    }
 }

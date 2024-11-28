@@ -13,7 +13,7 @@ Spiral Framework is a High-Performance PHP/Go Full-Stack framework and group of 
 Server Requirements
 --------
 Make sure that your server is configured with following PHP version and extensions:
-* PHP 8.0+, 64bit
+* PHP 8.1+, 64bit
 * *mb-string* extension
 * PDO Extension with desired database drivers (default SQLite)
 * For FrontEnd build yarn and nodejs are required.
@@ -41,52 +41,54 @@ Demo Screenshot
 Installation
 --------
 ```
-composer create-project spiral/app-keeper --stability dev
+composer create-project spiral/app-keeper
 cd app-keeper
 yarn && yarn build
 ```
 
+> **Note**
 > Application server will be downloaded automatically (`php-curl` and `php-zip` required).
 
 Once the application is installed you can ensure that it was configured properly by executing:
 
 ```
-$ php app.php configure -vv
+php app.php configure -vv
 ```
 
 Migrate the database:
 
 ```
-$ php app.php migrate:init
-$ php app.php migrate
+php app.php migrate:init
+php app.php migrate
 ```
 
 Seed user accounts:
 
 ```
-$ php app.php user:seed
+php app.php user:seed
 ```
 
 Create super admin account:
 
 ```
-$ php app.php user:create {First-Name} {Last-Name} {email-address} {password}
+php app.php user:create {First-Name} {Last-Name} {email-address} {password}
 ```
 
 To start application server execute:
 
 ```
-$ ./rr serve -d
+./rr serve -d
 ```
 
 On Windows:
 
 ```
-$ ./rr.exe serve -d
+./rr.exe serve -d
 ```
 
 Application will be available on `http://localhost:8080`. Keeper control panel available at `http://localhost:8080/keeper`.
 
+> **Note**
 > Read more about application server configuration [here](https://roadrunner.dev/docs). Make sure to turn `DEBUG` off in `.env` to enable view caching.
 
 Testing:
@@ -94,7 +96,7 @@ Testing:
 To test an application:
 
 ```bash
-$ ./vendor/bin/phpunit
+./vendor/bin/phpunit
 ```
 
 Cloning:
@@ -102,16 +104,17 @@ Cloning:
 Make sure to properly configure project if you cloned the existing repository.
 
 ```bash
-$ copy .env.sample .env
-$ composer install
-$ php app.php encrypt:key -m .env
-$ php app.php configure -vv
-$ php app.php migrate:init
-$ php app.php migrate
-$ ./vendor/bin/rr get
-$ yarn build
+copy .env.sample .env
+composer install
+php app.php encrypt:key -m .env
+php app.php configure -vv
+php app.php migrate:init
+php app.php migrate
+./vendor/bin/rr get
+yarn build
 ```
 
+> **Note**
 > Make sure to create super-admin account.
 
 Docker:
@@ -122,7 +125,7 @@ Requirements:  Docker engine 19.03.0+
 To launch Keeper in Docker create env file if needed.
 
 ```bash
-    copy .env.sample .env
+copy .env.sample .env
 ```
 
 Build and run for Linux and MacOS

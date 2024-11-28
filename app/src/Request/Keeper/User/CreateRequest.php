@@ -1,72 +1,45 @@
 <?php
 
-/**
- * This file is part of Spiral package.
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 declare(strict_types=1);
 
 namespace App\Request\Keeper\User;
 
 use App\Database\User;
 use App\Security\PasswordHasher;
-use Spiral\Filters\Filter;
+use Spiral\Filters\Attribute\Input\Post;
+use Spiral\Filters\Attribute\NestedFilter;
+use Spiral\Filters\Attribute\Setter;
+use Spiral\Filters\Model\Filter;
+use Spiral\Filters\Model\FilterDefinitionInterface;
+use Spiral\Filters\Model\HasFilterDefinition;
 use Spiral\Security\GuardInterface;
+use Spiral\Validator\FilterDefinition;
 
-/**
- * @property string $firstName
- * @property string $lastName
- * @property string $email
- * @property array  $roles
- * @property string $password
- * @property string $confirmPassword
- */
-class CreateRequest extends Filter
+class CreateRequest extends Filter implements HasFilterDefinition
 {
-    protected const SCHEMA = [
-        'firstName'       => 'data:firstName',
-        'lastName'        => 'data:lastName',
-        'email'           => 'data:email',
-        'password'        => 'data:password',
-        'confirmPassword' => 'data:confirmPassword',
-        'roles'           => 'data:roles',
-    ];
+    #[Post]
+    #[Setter('strval')]
+    public readonly string $firstName;
 
-    protected const VALIDATES = [
-        'firstName'       => ['notEmpty', 'string'],
-        'lastName'        => ['notEmpty', 'string'],
-        'email'           => [
-            ['notEmpty'],
-            ['string'],
-            ['email'],
-            ['entity:unique', 'user', 'email', 'error' => '[[Email address already used.]]'],
-        ],
-        'password'        => [
-            'notEmpty',
-            'string',
-            [[PasswordHasher::class, 'checkPassword'], 'error' => 'Password is too weak.'],
-        ],
-        'confirmPassword' => [
-            'notEmpty',
-            'string',
-            ['match', 'password', 'error' => 'Passwords do not match.'],
-        ],
-        'roles'           => [
-            ['notEmpty', 'error' => 'At least one role is required.'],
-            ['array'],
-            [[RolesRequest::class, 'validRoles'], 'error' => 'Invalid roles.'],
-        ],
-    ];
+    #[Post]
+    #[Setter('strval')]
+    public readonly string $lastName;
 
-    /**
-     * @param User           $user
-     * @param GuardInterface $guard
-     * @param PasswordHasher $passwords
-     * @return User
-     */
+    #[Post]
+    #[Setter('strval')]
+    public readonly string $email;
+
+    #[Post]
+    #[Setter('strval')]
+    public readonly string $password;
+
+    #[Post]
+    #[Setter('strval')]
+    public readonly string $confirmPassword;
+
+    #[NestedFilter(class: RolesRequest::class)]
+    public readonly RolesRequest $roles;
+
     public function map(User $user, GuardInterface $guard, PasswordHasher $passwords): User
     {
         $user->firstName = $this->firstName;
@@ -75,11 +48,35 @@ class CreateRequest extends Filter
         $user->passwordHash = $passwords->hash($this->password);
 
         if ($guard->allows('users.roles', compact('user'))) {
-            $user->roles = join(',', $this->roles);
+            $user = $this->roles->map($user);
         } else {
             $user->roles = 'user';
         }
 
         return $user;
+    }
+
+    public function filterDefinition(): FilterDefinitionInterface
+    {
+        return new FilterDefinition([
+            'firstName' => ['string', 'required'],
+            'lastName' => ['string', 'required'],
+            'email' => [
+                'string',
+                'required',
+                'email',
+                ['entity:unique', 'user', 'email', 'error' => '[[Email address already used.]]'],
+            ],
+            'password' => [
+                'required',
+                'string',
+                [[PasswordHasher::class, 'checkPassword'], 'error' => '[[Password is too weak.]]'],
+            ],
+            'confirmPassword' => [
+                'string',
+                'required',
+                ['match', 'password', 'error' => '[[Passwords do not match.]]'],
+            ],
+        ]);
     }
 }

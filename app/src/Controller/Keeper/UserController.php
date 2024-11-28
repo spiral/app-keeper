@@ -11,7 +11,7 @@ use App\Request\Keeper\User\UpdatePasswordRequest;
 use App\Request\Keeper\User\UpdateRequest;
 use App\View\UserGrid;
 use Cycle\ORM\Select;
-use Spiral\Cycle\DataGrid\Annotation\DataGrid;
+use Spiral\DataGrid\Annotation\DataGrid;
 use Spiral\Domain\Annotation\Guarded;
 use Spiral\Keeper\Annotation as Keeper;
 use Spiral\Keeper\Module\RouteRegistry;

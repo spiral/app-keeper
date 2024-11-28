@@ -1,86 +1,66 @@
 <?php
 
-/**
- * This file is part of Spiral package.
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 declare(strict_types=1);
 
 namespace App\Request\Auth;
 
-use Spiral\Filters\Filter;
+use Spiral\Filters\Attribute\Input\Post;
+use Spiral\Filters\Attribute\Setter;
+use Spiral\Filters\Model\Filter;
+use Spiral\Filters\Model\FilterDefinitionInterface;
+use Spiral\Filters\Model\HasFilterDefinition;
+use Spiral\Validator\FilterDefinition;
 
-class LoginRequest extends Filter
+class LoginRequest extends Filter implements HasFilterDefinition
 {
-    protected const SCHEMA = [
-        'username' => 'data:username',
-        'password' => 'data:password',
-        'code'     => 'data:code',
-        'remember' => 'data:remember',
-    ];
-
-    protected const VALIDATES = [
-        'username' => ['notEmpty', 'string'],
-        'password' => ['notEmpty', 'string'],
-        'remember' => ['boolean'],
-        'code'     => ['string'],
-    ];
-
-    protected const SETTERS = [
-        'username' => 'strval',
-        'password' => 'strval',
-        'code'     => 'strval',
-        'remember' => 'boolval',
-    ];
-
     /**
      * @see https://en.wikipedia.org/wiki/ISO_8601#Durations
      */
     private const DEFAULT_DURATION  = 'P1D';
     private const REMEMBER_DURATION = 'P1M';
 
-    /**
-     * @return string
-     */
-    public function getUsername(): string
-    {
-        return (string) $this->getField('username');
-    }
+    #[Post]
+    #[Setter('strval')]
+    public readonly string $username;
 
-    /**
-     * @return string
-     */
-    public function getPassword(): string
-    {
-        return (string) $this->getField('password');
-    }
+    #[Post]
+    #[Setter('strval')]
+    public readonly string $password;
 
-    /**
-     * @return string|null
-     */
+    #[Post]
+    #[Setter('boolval')]
+    public bool $remember = false;
+
+    #[Post]
+    #[Setter('strval')]
+    private readonly string $code;
+
     public function getCode(): ?string
     {
-        if ($this->getField('code') === '') {
+        if ($this->code === '') {
             return null;
         }
 
-        return $this->getField('code');
+        return $this->code;
     }
 
-    /**
-     * @return \DateTimeInterface
-     */
     public function getSessionExpiration(): \DateTimeInterface
     {
         $now = new \DateTime();
 
-        if ((bool) $this->getField('rememberMe')) {
+        if ($this->remember) {
             return $now->add(new \DateInterval(self::REMEMBER_DURATION));
         }
 
         return $now->add(new \DateInterval(self::DEFAULT_DURATION));
+    }
+
+    public function filterDefinition(): FilterDefinitionInterface
+    {
+        return new FilterDefinition([
+            'username' => ['string', 'required'],
+            'password' => ['string', 'required'],
+            'code' => ['string'],
+        ]);
     }
 }

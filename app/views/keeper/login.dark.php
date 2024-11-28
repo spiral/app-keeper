@@ -36,7 +36,7 @@
                         <form:wrapper action="@route('auth:login')" class="js-sf-form">
                             <form:input name="username" label="E-mail"/>
                             <form:input name="password" type="password" label="Password"/>
-                            <form:checkbox label="Remember me" name="remember" value="yes"/>
+                            <form:checkbox label="Remember me" name="remember" value="1"/>
                             <form:button label="Sign In"/>
                         </form:wrapper>
                     </block:form>

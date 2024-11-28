@@ -1,5 +1,5 @@
 ARG PHP_IMAGE=8.1.3-cli-alpine3.15
-ARG ROAD_RUNNER_IMAGE=2.8.2
+ARG ROAD_RUNNER_IMAGE=2023.3.11
 
 #Download rr binary
 FROM spiralscout/roadrunner:$ROAD_RUNNER_IMAGE as builder
